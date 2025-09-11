@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>The Agents - Vehicle Listings</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #ffffff;
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: #000000;
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+            vertical-align: middle;
+        }
+
+        nav a {
+            color: #ffffff;
+            margin-left: 20px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        nav a:hover {
+            opacity: 0.9;
+            color: #D4AF37;
+        }
+
+        /* Main Content */
+        main {
+            padding: 20px 0 60px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #D4AF37;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+
+        /* Sort Dropdown */
+        #sortContainer {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #sortSelect {
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 1em;
+            background-color: #fff;
+            cursor: pointer;
+        }
+
+        .car-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .car-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            border: 1px solid #eee;
+        }
+
+        .car-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+        }
+
+        .image-gallery {
+            height: 200px;
+            overflow: hidden;
+            border-bottom: 1px solid #eee;
+        }
+
+        .image-gallery img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: scale 0.4s;
+        }
+
+        .car-card:hover .image-gallery img {
+            scale: 1.05;
+        }
+
+        .gallery-thumbnails {
+            display: flex;
+            gap: 4px;
+            padding: 8px 10px;
+            background: #fafafa;
+            overflow-x: auto;
+            white-space: nowrap;
+            scrollbar-width: none;
+            max-width: 100%;
+        }
+
+        .gallery-thumbnails::-webkit-scrollbar {
+            display: none;
+        }
+
+        .thumbnail {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            cursor: pointer;
+        }
+
+        .thumbnail.active {
+            border-color: #D4AF37;
+            outline: 2px solid white;
+        }
+
+        .details {
+            padding: 18px;
+        }
+
+        .make-model {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #000000;
+            margin: 0 0 6px;
+        }
+
+        .variant {
+            font-size: 0.9em;
+            color: #7f8c8d;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .year, .location, .colour {
+            font-size: 0.95em;
+            color: #555;
+            margin: 4px 0;
+        }
+
+        .price {
+            font-size: 1.4em;
+            font-weight: 700;
+            color: #D4AF37;
+            margin: 10px 0;
+        }
+
+        .description {
+            font-size: 0.9em;
+            color: #555;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .no-listings {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 80px 20px;
+            color: #95a5a6;
+            font-style: italic;
+            background: #ecf0f1;
+            border-radius: 16px;
+            box-shadow: inset 0 2px 6px rgba(0,0,0,0.05);
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-top: 40px;
+            font-size: 1em;
+            color: #555;
+        }
+
+        .pagination button {
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            background: #D4AF37;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .pagination button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .pagination button:hover:not(:disabled) {
+            background: #c19d2a;
+        }
+
+        #pageInfo {
+            color: #555;
+        }
+
+        #loader {
+            text-align: center;
+            margin: 30px 0;
+            font-size: 1.2em;
+            color: #D4AF37;
+            display: none;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            justify-content: center;
+            align-items: center;
+            overflow: auto;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 18px;
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1.8em;
+            color: #000;
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .modal-header {
+            position: relative;
+            height: 400px;
+            overflow: hidden;
+            border-radius: 18px 18px 0 0;
+        }
+
+        .modal-main-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+            cursor: zoom-in;
+        }
+
+        .modal-main-img.zoomed {
+            transform: scale(1.5);
+            cursor: zoom-out;
+        }
+
+        .modal-main-img.fullscreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw !important;
+            height: 100vh !important;
+            z-index: 9999;
+            border-radius: 0;
+            object-fit: contain;
+            background: #000;
+            transform: none;
+        }
+
+        .swipe-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.6);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            font-size: 1.5em;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .swipe-btn:hover {
+            background: rgba(0,0,0,0.8);
+        }
+
+        #prevImageBtn {
+            left: 10px;
+        }
+
+        #nextImageBtn {
+            right: 10px;
+        }
+
+        .modal-thumbnails {
+            display: flex;
+            gap: 10px;
+            padding: 15px;
+            background: #f5f5f5;
+            flex-wrap: wrap;
+        }
+
+        .modal-thumbnail {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 3px solid transparent;
+            cursor: pointer;
+        }
+
+        .modal-thumbnail.active {
+            border-color: #D4AF37;
+        }
+
+        .modal-body {
+            padding: 25px;
+        }
+
+        .modal-title {
+            font-size: 1.8em;
+            color: #000000;
+            margin-bottom: 10px;
+        }
+
+        .modal-price {
+            font-size: 1.6em;
+            font-weight: 700;
+            color: #D4AF37;
+            margin: 10px 0;
+        }
+
+        .modal-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+            color: #555;
+        }
+
+        .info-item strong {
+            color: #000000;
+        }
+
+        .modal-description {
+            font-size: 1.05em;
+            line-height: 1.7;
+            color: #34495e;
+            margin-top: 20px;
+            white-space: pre-wrap;
+        }
+
+        /* Download & Share Buttons */
+        .download-btn, .share-btn {
+            position: absolute;
+            bottom: 15px;
+            background: rgba(0,0,0,0.6);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            font-size: 0.9em;
+            border-radius: 6px;
+            cursor: pointer;
+            z-index: 10;
+            transition: background 0.3s;
+        }
+
+        .download-btn:hover, .share-btn:hover {
+            background: rgba(0,0,0,0.8);
+        }
+
+        .download-btn {
+            left: 20px;
+        }
+
+        .share-btn {
+            right: 20px;
+        }
+
+        /* Footer */
+        footer {
+            background: #000000;
+            color: #ffffff;
+            padding: 40px 0 20px;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 20px;
+        }
+
+        .footer-section h3 {
+            color: #D4AF37;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #cccccc;
+            font-size: 0.9em;
+            margin-bottom: 8px;
+            display: block;
+            text-decoration: none;
+        }
+
+        .footer-section a:hover {
+            color: #D4AF37;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            color: #999;
+            font-size: 0.9em;
+            border-top: 1px solid #333;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .car-grid {
+                grid-template-columns: 1fr;
+            }
+            h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+    <div class="container header-content">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='logo.jpg') }}" alt="The Agents Logo">
+        </div>
+        <nav>
+            <a href="/">Home</a>
+            <a href="#about-section">About</a>
+            <a href="#contact-section">Contact</a>
+        </nav>
+    </div>
+</header>
+
+<!-- Main -->
+<main class="container">
+    <h1>The Agents</h1>
+
+    <!-- Sort Dropdown -->
+    <div id="sortContainer">
+        <label for="sortSelect"><i class="fas fa-sort"></i> Sort:</label>
+        <select id="sortSelect" onchange="sortListings()">
+            <option value="default">Default (Newest First)</option>
+            <option value="price-low">Price - Low to High</option>
+            <option value="price-high">Price - High to Low</option>
+            <option value="recent">Most Recent</option>
+        </select>
+    </div>
+
+    <div class="car-grid" id="carGrid">
+        <!-- Cars will be inserted here dynamically -->
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination">
+        <button id="prevPage" disabled>&laquo; Previous</button>
+        <span id="pageInfo">Page <strong>1</strong></span>
+        <button id="nextPage">Next &raquo;</button>
+    </div>
+</main>
+
+<!-- Modal -->
+<div id="detailModal" class="modal">
+    <button class="close-btn" onclick="closeModal()">&times;</button>
+    <div class="modal-content">
+        <div class="modal-header">
+            <img id="modalMainImage" class="modal-main-img" src="" alt="Car Image">
+            <button id="prevImageBtn" class="swipe-btn">❮</button>
+            <button id="nextImageBtn" class="swipe-btn">❯</button>
+            <button id="downloadBtn" class="download-btn">📥 Download</button>
+            <button id="shareBtn" class="share-btn">🔗 Share</button>
+        </div>
+        <div class="modal-thumbnails" id="modalThumbnails"></div>
+        <div class="modal-body">
+            <h2 id="modalTitle" class="modal-title"></h2>
+            <p id="modalPrice" class="modal-price"></p>
+            <div class="modal-info">
+                <div class="info-item"><strong>Year:</strong> <span id="modalYear"></span></div>
+                <div class="info-item"><strong>Colour:</strong> <span id="modalColour"></span></div>
+                <div class="info-item"><strong>Body Type:</strong> <span id="modalBodyType"></span></div>
+                <div class="info-item"><strong>Location:</strong> <span id="modalLocation"></span></div>
+            </div>
+            <div class="modal-description" id="modalDescription"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section" id="about-section">
+                <h3>About Us</h3>
+                <p>Your trusted partner for finding the perfect vehicle in South Africa.
+                </p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="/">Home</a>
+                <a href="/">Search Cars</a>
+                <a href="/">About</a>
+            </div>
+            <div class="footer-section" id="contact-section">
+                <h3>Contact</h3>
+                <p>📞 +27 12 345 6789</p>
+                <p>✉️ info@autotrader.za</p>
+                <p>📍 Cape Town, South Africa</p>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2025 The Agents. All rights reserved.
+        </div>
+    </div>
+</footer>
+
+<!-- Script -->
+<script>
+    // Get listings from Flask template
+    const allListings = {{ listings | tojson }};
+
+    // Initialize currentListings without pre-sorting
+    let currentListings = [...allListings];
+    let currentPage = 1;
+    const carsPerPage = 12;
+
+    // DOM Elements
+    const carGrid = document.getElementById("carGrid");
+    const prevPageBtn = document.getElementById("prevPage");
+    const nextPageBtn = document.getElementById("nextPage");
+    const pageInfo = document.getElementById("pageInfo");
+
+    // Modal state
+    let currentImageIndex = 0;
+    let totalImages = 0;
+    let currentCar = null;
+    let isFullscreen = false;
+
+    // === SORTING FUNCTION ===
+    function sortListings() {
+        const sortValue = document.getElementById("sortSelect").value;
+        let sortedListings;
+
+        switch (sortValue) {
+            case "price-low":
+                sortedListings = [...allListings].sort((a, b) => {
+                    // Parse price string like "129900,0000" or "R129 900"
+                    const priceA = parseFloat((a.price || "0").toString().replace(/[^0-9,]/g, '').replace(',', '.')) || 0;
+                    const priceB = parseFloat((b.price || "0").toString().replace(/[^0-9,]/g, '').replace(',', '.')) || 0;
+                    return priceA - priceB;
+                });
+                break;
+
+            case "price-high":
+                sortedListings = [...allListings].sort((a, b) => {
+                     const priceA = parseFloat((a.price || "0").toString().replace(/[^0-9,]/g, '').replace(',', '.')) || 0;
+                     const priceB = parseFloat((b.price || "0").toString().replace(/[^0-9,]/g, '').replace(',', '.')) || 0;
+                    return priceB - priceA;
+                });
+                break;
+
+             case "recent": // Most recent first
+            case "default": // Assuming default is also most recent first
+            default:
+                sortedListings = [...allListings].sort((a, b) => {
+                    // Handle potentially missing or invalid dates
+                    const dateA = new Date(a.created || 0);
+                    const dateB = new Date(b.created || 0);
+                    // Descending: newest first
+                    return dateB - dateA;
+                });
+        }
+
+        // Update currentListings and re-render
+        currentListings = sortedListings;
+        currentPage = 1; // Reset to first page
+        renderPage();
+        updatePaginationButtons();
+    }
+
+    // Initial render and sort
+    window.onload = function () {
+        // Ensure the dropdown reflects the default sort
+        document.getElementById("sortSelect").value = "default";
+        // Apply the default sort
+        sortListings();
+    };
+
+    // Render current page of cars
+    function renderPage() {
+        const start = (currentPage - 1) * carsPerPage;
+        const end = start + carsPerPage;
+        const paginatedCars = currentListings.slice(start, end);
+
+        if (paginatedCars.length === 0) {
+            carGrid.innerHTML = `<p class="no-listings">No vehicles match your search. Try adjusting filters.</p>`;
+            return;
+        }
+
+        carGrid.innerHTML = "";
+        paginatedCars.forEach((car, idx) => {
+            // Use the index within the currentListings array for this page
+            const globalIndex = start + idx;
+            const firstImg = car.image_urls?.[0] || 'https://via.placeholder.com/320x200?text=No+Image';
+            const variantLine = car.variant ? `<span class="variant">${car.variant}</span>` : "";
+            const desc = car.description?.substring(0, 100) + (car.description?.length > 100 ? "..." : "");
+
+            const carEl = document.createElement("div");
+            carEl.className = "car-card";
+            // Pass the global index within currentListings to openModal
+            carEl.onclick = () => openModal(globalIndex);
+
+            carEl.innerHTML = `
+                <div class="image-gallery">
+                    <img src="${firstImg}" alt="${car.make} ${car.model}" class="main-image">
+                </div>
+                <div class="gallery-thumbnails">
+                    ${car.image_urls?.slice(0, 4).map((img, i) =>
+                        `<img src="${img}" alt="Thumb" class="thumbnail ${i === 0 ? 'active' : ''}"
+                              onclick="changeThumb(event, ${globalIndex}, ${i})">`
+                    ).join('') || ''}
+                </div>
+                <div class="details">
+                    <h3 class="make-model">${car.make} ${car.model} ${variantLine}</h3>
+                    <p class="year">📅 ${car.year}</p>
+                    <p class="colour">🎨 ${car.colour}</p>
+                    <p class="mileage">📏 ${car.mileage} Km</p>
+                    <p class="price">${car.price_display}</p> <!-- Use pre-formatted price -->
+                    <p class="description">${desc}</p>
+                </div>
+            `;
+            carGrid.appendChild(carEl);
+        });
+    }
+
+    // Update pagination UI
+    function updatePaginationButtons() {
+        const totalPages = Math.ceil(currentListings.length / carsPerPage);
+        pageInfo.innerHTML = `Page <strong>${currentPage}</strong> of ${totalPages || 1}`;
+        prevPageBtn.disabled = currentPage === 1;
+        nextPageBtn.disabled = currentPage >= totalPages;
+    }
+
+    // Pagination event listeners
+    prevPageBtn.addEventListener("click", () => {
+        if (currentPage > 1) {
+            currentPage--;
+            renderPage();
+            updatePaginationButtons();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    });
+
+    nextPageBtn.addEventListener("click", () => {
+        const totalPages = Math.ceil(currentListings.length / carsPerPage);
+        if (currentPage < totalPages) {
+            currentPage++;
+            renderPage();
+            updatePaginationButtons();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    });
+
+    // Thumbnail switch inside card - now uses global index
+    function changeThumb(event, globalIndex, thumbIndex) {
+        event.stopPropagation();
+        const card = event.target.closest('.car-card');
+        const mainImg = card.querySelector('.main-image');
+        const thumbnails = card.querySelectorAll('.thumbnail');
+        thumbnails.forEach(t => t.classList.remove('active'));
+        event.target.classList.add('active');
+        // Access car data using the global index
+        mainImg.src = currentListings[globalIndex]?.image_urls[thumbIndex];
+    }
+
+
+    // Open modal with full details - now uses global index
+    function openModal(globalIndex) {
+        // Get the car object directly from the current sorted list
+        currentCar = currentListings[globalIndex];
+        if (!currentCar) {
+             console.error("Car not found for index:", globalIndex);
+             return; // Exit if car not found
+        }
+        totalImages = currentCar.image_urls?.length || 0;
+        currentImageIndex = 0;
+
+        document.getElementById("modalTitle").textContent = `${currentCar.make} ${currentCar.model} ${currentCar.variant || ''}`;
+        document.getElementById("modalPrice").textContent = currentCar.price_display; // Use pre-formatted price
+        document.getElementById("modalYear").textContent = currentCar.year;
+        document.getElementById("modalColour").textContent = currentCar.colour;
+        document.getElementById("modalBodyType").textContent = currentCar.body_type || "N/A";
+        document.getElementById("modalLocation").textContent = currentCar.location;
+        document.getElementById("modalDescription").textContent = currentCar.description;
+
+        const modalMain = document.getElementById("modalMainImage");
+        const thumbsContainer = document.getElementById("modalThumbnails");
+        modalMain.src = currentCar.image_urls?.[0] || '';
+        thumbsContainer.innerHTML = "";
+
+        // Add thumbnails
+        (currentCar.image_urls || []).forEach((img, i) => {
+            const thumb = document.createElement("img");
+            thumb.src = img;
+            thumb.className = `modal-thumbnail ${i === 0 ? 'active' : ''}`;
+            thumb.onclick = () => {
+                modalMain.src = img;
+                document.querySelectorAll(".modal-thumbnail").forEach(t => t.classList.remove('active'));
+                thumb.classList.add('active');
+                currentImageIndex = i;
+            };
+            thumbsContainer.appendChild(thumb);
+        });
+
+        // Double-click to zoom/fullscreen
+        modalMain.addEventListener('dblclick', (e) => {
+            e.stopPropagation();
+            if (modalMain.classList.contains('fullscreen')) {
+                exitFullscreen();
+            } else if (modalMain.classList.contains('zoomed')) {
+                modalMain.classList.remove('zoomed');
+                modalMain.style.cursor = 'zoom-in';
+            } else {
+                modalMain.classList.add('zoomed');
+                modalMain.style.cursor = 'zoom-out';
+            }
+        });
+
+        // Download button
+        document.getElementById("downloadBtn").onclick = (e) => {
+            e.stopPropagation();
+            const link = document.createElement('a');
+            link.href = modalMain.src;
+            const filename = `${currentCar.make}_${currentCar.model}_${currentCar.year}_${currentImageIndex + 1}.jpg`.replace(/\s+/g, '_');
+            link.download = filename;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        };
+
+        // Share button (copy image URL)
+        document.getElementById("shareBtn").onclick = (e) => {
+            e.stopPropagation();
+            navigator.clipboard.writeText(modalMain.src).then(() => {
+                alert("✅ Image link copied!");
+            }).catch(err => {
+                console.error("Copy failed:", err);
+                alert("❌ Failed to copy.");
+            });
+        };
+
+        // Touch swipe handling
+        let startX = 0;
+        modalMain.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+        }, { passive: true });
+
+        modalMain.addEventListener('touchend', (e) => {
+            const currentX = e.changedTouches[0].clientX;
+            const diff = startX - currentX;
+
+            if (diff > 50 && currentImageIndex < totalImages - 1) {
+                nextImage();
+            } else if (diff < -50 && currentImageIndex > 0) {
+                prevImage();
+            }
+        }, { passive: true });
+
+        // Update navigation buttons
+        updateSwipeButtons();
+
+        // Show modal
+        document.getElementById("detailModal").style.display = "flex";
+    }
+
+    // Navigation functions
+    function prevImage() {
+        if (!currentCar || currentImageIndex <= 0) return;
+        currentImageIndex--;
+        const modalMain = document.getElementById("modalMainImage");
+        modalMain.src = currentCar.image_urls[currentImageIndex];
+        updateThumbnails();
+        updateSwipeButtons();
+    }
+
+    function nextImage() {
+        if (!currentCar || currentImageIndex >= currentCar.image_urls.length - 1) return;
+        currentImageIndex++;
+        const modalMain = document.getElementById("modalMainImage");
+        modalMain.src = currentCar.image_urls[currentImageIndex];
+        updateThumbnails();
+        updateSwipeButtons();
+    }
+
+    function updateThumbnails() {
+        document.querySelectorAll(".modal-thumbnail").forEach((thumb, i) => {
+            thumb.classList.toggle('active', i === currentImageIndex);
+        });
+    }
+
+    function updateSwipeButtons() {
+        const prevBtn = document.getElementById("prevImageBtn");
+        const nextBtn = document.getElementById("nextImageBtn");
+        if (prevBtn) prevBtn.disabled = currentImageIndex === 0;
+        if (nextBtn) nextBtn.disabled = currentImageIndex >= (currentCar?.image_urls.length || 1) - 1;
+    }
+
+    // Fullscreen toggle
+    function enterFullscreen() {
+        const modalMain = document.getElementById("modalMainImage");
+        if (modalMain) modalMain.classList.add('fullscreen');
+    }
+
+    function exitFullscreen() {
+        const modalMain = document.getElementById("modalMainImage");
+        if (modalMain) {
+            modalMain.classList.remove('fullscreen');
+            modalMain.classList.remove('zoomed');
+            modalMain.style.cursor = 'zoom-in';
+        }
+    }
+
+    // Close modal
+    function closeModal() {
+        document.getElementById("detailModal").style.display = "none";
+        const modalMain = document.getElementById("modalMainImage");
+        modalMain.classList.remove('zoomed', 'fullscreen');
+        modalMain.style.cursor = 'zoom-in';
+        isFullscreen = false;
+    }
+
+    // Click outside modal to close
+    window.onclick = function(event) {
+        const modal = document.getElementById("detailModal");
+        if (event.target === modal) closeModal();
+    };
+
+    // Keyboard shortcuts
+    document.addEventListener('keydown', (e) => {
+        const modal = document.getElementById("detailModal");
+        if (modal.style.display !== "flex") return;
+
+        if (e.key === 'Escape') {
+            if (isFullscreen) exitFullscreen();
+            else closeModal();
+        } else if (e.key === 'ArrowLeft') prevImage();
+        else if (e.key === 'ArrowRight') nextImage();
+        else if (e.key.toLowerCase() === 'f') {
+            if (isFullscreen) exitFullscreen();
+            else enterFullscreen();
+        }
+    });
+</script>
+
+</body>
+</html>
