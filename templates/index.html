@@ -15,7 +15,7 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: #ffffff;
+            background: #f8f9fa;
             color: #2c3e50;
             line-height: 1.6;
         }
@@ -108,8 +108,9 @@
             overflow: hidden;
             box-shadow: 0 8px 20px rgba(0,0,0,0.08);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
             border: 1px solid #eee;
+            text-decoration: none;
+            color: inherit;
         }
 
         .car-card:hover {
@@ -165,6 +166,7 @@
 
         .details {
             padding: 18px;
+            text-decoration: none;
         }
 
         .make-model {
@@ -172,6 +174,7 @@
             font-weight: 700;
             color: #000000;
             margin: 0 0 6px;
+            text-decoration: none;
         }
 
         .variant {
@@ -179,12 +182,14 @@
             color: #7f8c8d;
             margin-bottom: 8px;
             display: block;
+            text-decoration: none;
         }
 
         .year, .location, .colour {
             font-size: 0.95em;
             color: #555;
             margin: 4px 0;
+            text-decoration: none;
         }
 
         .price {
@@ -192,6 +197,7 @@
             font-weight: 700;
             color: #D4AF37;
             margin: 10px 0;
+            text-decoration: none;
         }
 
         .description {
@@ -201,6 +207,7 @@
             -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
             overflow: hidden;
+            text-decoration: none;
         }
 
         .no-listings {
@@ -257,194 +264,6 @@
             display: none;
         }
 
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1001;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.7);
-            justify-content: center;
-            align-items: center;
-            overflow: auto;
-            padding: 20px;
-        }
-
-        .modal-content {
-            background: white;
-            border-radius: 18px;
-            max-width: 900px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
-            position: relative;
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            font-size: 1.8em;
-            color: #000;
-            background: none;
-            border: none;
-            cursor: pointer;
-            z-index: 10;
-        }
-
-        .modal-header {
-            position: relative;
-            height: 400px;
-            overflow: hidden;
-            border-radius: 18px 18px 0 0;
-        }
-
-        .modal-main-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-            cursor: zoom-in;
-        }
-
-        .modal-main-img.zoomed {
-            transform: scale(1.5);
-            cursor: zoom-out;
-        }
-
-        .modal-main-img.fullscreen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw !important;
-            height: 100vh !important;
-            z-index: 9999;
-            border-radius: 0;
-            object-fit: contain;
-            background: #000;
-            transform: none;
-        }
-
-        .swipe-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0,0,0,0.6);
-            color: white;
-            border: none;
-            width: 40px;
-            height: 40px;
-            font-size: 1.5em;
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 10;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.3s;
-        }
-
-        .swipe-btn:hover {
-            background: rgba(0,0,0,0.8);
-        }
-
-        #prevImageBtn {
-            left: 10px;
-        }
-
-        #nextImageBtn {
-            right: 10px;
-        }
-
-        .modal-thumbnails {
-            display: flex;
-            gap: 10px;
-            padding: 15px;
-            background: #f5f5f5;
-            flex-wrap: wrap;
-        }
-
-        .modal-thumbnail {
-            width: 80px;
-            height: 80px;
-            object-fit: cover;
-            border-radius: 10px;
-            border: 3px solid transparent;
-            cursor: pointer;
-        }
-
-        .modal-thumbnail.active {
-            border-color: #D4AF37;
-        }
-
-        .modal-body {
-            padding: 25px;
-        }
-
-        .modal-title {
-            font-size: 1.8em;
-            color: #000000;
-            margin-bottom: 10px;
-        }
-
-        .modal-price {
-            font-size: 1.6em;
-            font-weight: 700;
-            color: #D4AF37;
-            margin: 10px 0;
-        }
-
-        .modal-info {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin: 20px 0;
-            color: #555;
-        }
-
-        .info-item strong {
-            color: #000000;
-        }
-
-        .modal-description {
-            font-size: 1.05em;
-            line-height: 1.7;
-            color: #34495e;
-            margin-top: 20px;
-            white-space: pre-wrap;
-        }
-
-        /* Download & Share Buttons */
-        .download-btn, .share-btn {
-            position: absolute;
-            bottom: 15px;
-            background: rgba(0,0,0,0.6);
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            font-size: 0.9em;
-            border-radius: 6px;
-            cursor: pointer;
-            z-index: 10;
-            transition: background 0.3s;
-        }
-
-        .download-btn:hover, .share-btn:hover {
-            background: rgba(0,0,0,0.8);
-        }
-
-        .download-btn {
-            left: 20px;
-        }
-
-        .share-btn {
-            right: 20px;
-        }
-
         /* Footer */
         footer {
             background: #000000;
@@ -483,6 +302,31 @@
             color: #D4AF37;
         }
 
+        /* Social Media Icons */
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: #333;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.2em;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background: #D4AF37;
+            transform: translateY(-3px);
+        }
+
         .copyright {
             text-align: center;
             padding-top: 20px;
@@ -492,13 +336,13 @@
             margin-top: 30px;
         }
 
-        @media (max-width: 768px) {
-            .car-grid {
-                grid-template-columns: 1fr;
-            }
-            h1 {
-                font-size: 2em;
-            }
+        /* Remove underlines from all links */
+        a {
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: none;
         }
     </style>
 </head>
@@ -513,7 +357,7 @@
         <nav>
             <a href="/">Home</a>
             <a href="#about-section">About</a>
-            <a href="#contact-section">Contact</a>
+            <a href="/contact.html">Contact</a>
         </nav>
     </div>
 </header>
@@ -545,40 +389,13 @@
     </div>
 </main>
 
-<!-- Modal -->
-<div id="detailModal" class="modal">
-    <button class="close-btn" onclick="closeModal()">&times;</button>
-    <div class="modal-content">
-        <div class="modal-header">
-            <img id="modalMainImage" class="modal-main-img" src="" alt="Car Image">
-            <button id="prevImageBtn" class="swipe-btn">❮</button>
-            <button id="nextImageBtn" class="swipe-btn">❯</button>
-            <button id="downloadBtn" class="download-btn">📥 Download</button>
-            <button id="shareBtn" class="share-btn">🔗 Share</button>
-        </div>
-        <div class="modal-thumbnails" id="modalThumbnails"></div>
-        <div class="modal-body">
-            <h2 id="modalTitle" class="modal-title"></h2>
-            <p id="modalPrice" class="modal-price"></p>
-            <div class="modal-info">
-                <div class="info-item"><strong>Year:</strong> <span id="modalYear"></span></div>
-                <div class="info-item"><strong>Colour:</strong> <span id="modalColour"></span></div>
-                <div class="info-item"><strong>Body Type:</strong> <span id="modalBodyType"></span></div>
-                <div class="info-item"><strong>Location:</strong> <span id="modalLocation"></span></div>
-            </div>
-            <div class="modal-description" id="modalDescription"></div>
-        </div>
-    </div>
-</div>
-
 <!-- Footer -->
 <footer>
     <div class="container">
         <div class="footer-content">
-            <div class="footer-section" id="about-section">
+            <div class="footer-section">
                 <h3>About Us</h3>
-                <p>Your trusted partner for finding the perfect vehicle in South Africa.
-                </p>
+                <p>Your trusted partner for finding the perfect vehicle in South Africa.</p>
             </div>
             <div class="footer-section">
                 <h3>Quick Links</h3>
@@ -587,10 +404,16 @@
                 <a href="/">About</a>
             </div>
             <div class="footer-section" id="contact-section">
-                <h3>Contact</h3>
-                <p>📞 +27 12 345 6789</p>
-                <p>✉️ info@autotrader.za</p>
-                <p>📍 Cape Town, South Africa</p>
+                <h3>Contact Info</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 229A Bram Fischer Drive, Randburg, Gauteng</p>
+                <p><i class="fas fa-phone"></i> 087 036 8087</p>
+                <p><i class="fas fa-envelope"></i> autoagents23@gmail.com</p>
+                <div class="social-icons">
+                    <a href="https://wa.me/27123456789" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://facebook.com/theautoagents" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://instagram.com/theautoagents" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com/theautoagents" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
             </div>
         </div>
         <div class="copyright">
@@ -599,7 +422,6 @@
     </div>
 </footer>
 
-<!-- Script -->
 <script>
     // Get listings from Flask template
     const allListings = {{ listings | tojson }};
@@ -615,12 +437,6 @@
     const nextPageBtn = document.getElementById("nextPage");
     const pageInfo = document.getElementById("pageInfo");
 
-    // Modal state
-    let currentImageIndex = 0;
-    let totalImages = 0;
-    let currentCar = null;
-    let isFullscreen = false;
-
     // === SORTING FUNCTION ===
     function sortListings() {
         const sortValue = document.getElementById("sortSelect").value;
@@ -629,7 +445,6 @@
         switch (sortValue) {
             case "price-low":
                 sortedListings = [...allListings].sort((a, b) => {
-                    // Parse price string like "129900,0000" or "R129 900"
                     const priceA = parseFloat((a.price || "0").toString().replace(/[^0-9,]/g, '').replace(',', '.')) || 0;
                     const priceB = parseFloat((b.price || "0").toString().replace(/[^0-9,]/g, '').replace(',', '.')) || 0;
                     return priceA - priceB;
@@ -648,10 +463,8 @@
             case "default": // Assuming default is also most recent first
             default:
                 sortedListings = [...allListings].sort((a, b) => {
-                    // Handle potentially missing or invalid dates
                     const dateA = new Date(a.created || 0);
                     const dateB = new Date(b.created || 0);
-                    // Descending: newest first
                     return dateB - dateA;
                 });
         }
@@ -665,9 +478,7 @@
 
     // Initial render and sort
     window.onload = function () {
-        // Ensure the dropdown reflects the default sort
         document.getElementById("sortSelect").value = "default";
-        // Apply the default sort
         sortListings();
     };
 
@@ -684,25 +495,23 @@
 
         carGrid.innerHTML = "";
         paginatedCars.forEach((car, idx) => {
-            // Use the index within the currentListings array for this page
             const globalIndex = start + idx;
             const firstImg = car.image_urls?.[0] || 'https://via.placeholder.com/320x200?text=No+Image';
             const variantLine = car.variant ? `<span class="variant">${car.variant}</span>` : "";
             const desc = car.description?.substring(0, 100) + (car.description?.length > 100 ? "..." : "");
 
-            const carEl = document.createElement("div");
-            carEl.className = "car-card";
-            // Pass the global index within currentListings to openModal
-            carEl.onclick = () => openModal(globalIndex);
-
-            carEl.innerHTML = `
+            // Create a link element for the entire card
+            const carLink = document.createElement("a");
+            carLink.href = `/listing/${car.id}`;
+            carLink.className = "car-card";
+            
+            carLink.innerHTML = `
                 <div class="image-gallery">
                     <img src="${firstImg}" alt="${car.make} ${car.model}" class="main-image">
                 </div>
                 <div class="gallery-thumbnails">
                     ${car.image_urls?.slice(0, 4).map((img, i) =>
-                        `<img src="${img}" alt="Thumb" class="thumbnail ${i === 0 ? 'active' : ''}"
-                              onclick="changeThumb(event, ${globalIndex}, ${i})">`
+                        `<img src="${img}" alt="Thumb" class="thumbnail ${i === 0 ? 'active' : ''}">`
                     ).join('') || ''}
                 </div>
                 <div class="details">
@@ -710,11 +519,12 @@
                     <p class="year">📅 ${car.year}</p>
                     <p class="colour">🎨 ${car.colour}</p>
                     <p class="mileage">📏 ${car.mileage} Km</p>
-                    <p class="price">${car.price_display}</p> <!-- Use pre-formatted price -->
+                    <p class="price">${car.price_display}</p>
                     <p class="description">${desc}</p>
                 </div>
             `;
-            carGrid.appendChild(carEl);
+            
+            carGrid.appendChild(carLink);
         });
     }
 
@@ -746,193 +556,19 @@
         }
     });
 
-    // Thumbnail switch inside card - now uses global index
-    function changeThumb(event, globalIndex, thumbIndex) {
-        event.stopPropagation();
-        const card = event.target.closest('.car-card');
-        const mainImg = card.querySelector('.main-image');
-        const thumbnails = card.querySelectorAll('.thumbnail');
-        thumbnails.forEach(t => t.classList.remove('active'));
-        event.target.classList.add('active');
-        // Access car data using the global index
-        mainImg.src = currentListings[globalIndex]?.image_urls[thumbIndex];
-    }
-
-
-    // Open modal with full details - now uses global index
-    function openModal(globalIndex) {
-        // Get the car object directly from the current sorted list
-        currentCar = currentListings[globalIndex];
-        if (!currentCar) {
-             console.error("Car not found for index:", globalIndex);
-             return; // Exit if car not found
-        }
-        totalImages = currentCar.image_urls?.length || 0;
-        currentImageIndex = 0;
-
-        document.getElementById("modalTitle").textContent = `${currentCar.make} ${currentCar.model} ${currentCar.variant || ''}`;
-        document.getElementById("modalPrice").textContent = currentCar.price_display; // Use pre-formatted price
-        document.getElementById("modalYear").textContent = currentCar.year;
-        document.getElementById("modalColour").textContent = currentCar.colour;
-        document.getElementById("modalBodyType").textContent = currentCar.body_type || "N/A";
-        document.getElementById("modalLocation").textContent = currentCar.location;
-        document.getElementById("modalDescription").textContent = currentCar.description;
-
-        const modalMain = document.getElementById("modalMainImage");
-        const thumbsContainer = document.getElementById("modalThumbnails");
-        modalMain.src = currentCar.image_urls?.[0] || '';
-        thumbsContainer.innerHTML = "";
-
-        // Add thumbnails
-        (currentCar.image_urls || []).forEach((img, i) => {
-            const thumb = document.createElement("img");
-            thumb.src = img;
-            thumb.className = `modal-thumbnail ${i === 0 ? 'active' : ''}`;
-            thumb.onclick = () => {
-                modalMain.src = img;
-                document.querySelectorAll(".modal-thumbnail").forEach(t => t.classList.remove('active'));
-                thumb.classList.add('active');
-                currentImageIndex = i;
-            };
-            thumbsContainer.appendChild(thumb);
-        });
-
-        // Double-click to zoom/fullscreen
-        modalMain.addEventListener('dblclick', (e) => {
+    // Thumbnail switch inside card
+    carGrid.addEventListener("click", function(e) {
+        if (e.target.classList.contains("thumbnail")) {
+            e.preventDefault();
             e.stopPropagation();
-            if (modalMain.classList.contains('fullscreen')) {
-                exitFullscreen();
-            } else if (modalMain.classList.contains('zoomed')) {
-                modalMain.classList.remove('zoomed');
-                modalMain.style.cursor = 'zoom-in';
-            } else {
-                modalMain.classList.add('zoomed');
-                modalMain.style.cursor = 'zoom-out';
-            }
-        });
-
-        // Download button
-        document.getElementById("downloadBtn").onclick = (e) => {
-            e.stopPropagation();
-            const link = document.createElement('a');
-            link.href = modalMain.src;
-            const filename = `${currentCar.make}_${currentCar.model}_${currentCar.year}_${currentImageIndex + 1}.jpg`.replace(/\s+/g, '_');
-            link.download = filename;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        };
-
-        // Share button (copy image URL)
-        document.getElementById("shareBtn").onclick = (e) => {
-            e.stopPropagation();
-            navigator.clipboard.writeText(modalMain.src).then(() => {
-                alert("✅ Image link copied!");
-            }).catch(err => {
-                console.error("Copy failed:", err);
-                alert("❌ Failed to copy.");
-            });
-        };
-
-        // Touch swipe handling
-        let startX = 0;
-        modalMain.addEventListener('touchstart', (e) => {
-            startX = e.touches[0].clientX;
-        }, { passive: true });
-
-        modalMain.addEventListener('touchend', (e) => {
-            const currentX = e.changedTouches[0].clientX;
-            const diff = startX - currentX;
-
-            if (diff > 50 && currentImageIndex < totalImages - 1) {
-                nextImage();
-            } else if (diff < -50 && currentImageIndex > 0) {
-                prevImage();
-            }
-        }, { passive: true });
-
-        // Update navigation buttons
-        updateSwipeButtons();
-
-        // Show modal
-        document.getElementById("detailModal").style.display = "flex";
-    }
-
-    // Navigation functions
-    function prevImage() {
-        if (!currentCar || currentImageIndex <= 0) return;
-        currentImageIndex--;
-        const modalMain = document.getElementById("modalMainImage");
-        modalMain.src = currentCar.image_urls[currentImageIndex];
-        updateThumbnails();
-        updateSwipeButtons();
-    }
-
-    function nextImage() {
-        if (!currentCar || currentImageIndex >= currentCar.image_urls.length - 1) return;
-        currentImageIndex++;
-        const modalMain = document.getElementById("modalMainImage");
-        modalMain.src = currentCar.image_urls[currentImageIndex];
-        updateThumbnails();
-        updateSwipeButtons();
-    }
-
-    function updateThumbnails() {
-        document.querySelectorAll(".modal-thumbnail").forEach((thumb, i) => {
-            thumb.classList.toggle('active', i === currentImageIndex);
-        });
-    }
-
-    function updateSwipeButtons() {
-        const prevBtn = document.getElementById("prevImageBtn");
-        const nextBtn = document.getElementById("nextImageBtn");
-        if (prevBtn) prevBtn.disabled = currentImageIndex === 0;
-        if (nextBtn) nextBtn.disabled = currentImageIndex >= (currentCar?.image_urls.length || 1) - 1;
-    }
-
-    // Fullscreen toggle
-    function enterFullscreen() {
-        const modalMain = document.getElementById("modalMainImage");
-        if (modalMain) modalMain.classList.add('fullscreen');
-    }
-
-    function exitFullscreen() {
-        const modalMain = document.getElementById("modalMainImage");
-        if (modalMain) {
-            modalMain.classList.remove('fullscreen');
-            modalMain.classList.remove('zoomed');
-            modalMain.style.cursor = 'zoom-in';
-        }
-    }
-
-    // Close modal
-    function closeModal() {
-        document.getElementById("detailModal").style.display = "none";
-        const modalMain = document.getElementById("modalMainImage");
-        modalMain.classList.remove('zoomed', 'fullscreen');
-        modalMain.style.cursor = 'zoom-in';
-        isFullscreen = false;
-    }
-
-    // Click outside modal to close
-    window.onclick = function(event) {
-        const modal = document.getElementById("detailModal");
-        if (event.target === modal) closeModal();
-    };
-
-    // Keyboard shortcuts
-    document.addEventListener('keydown', (e) => {
-        const modal = document.getElementById("detailModal");
-        if (modal.style.display !== "flex") return;
-
-        if (e.key === 'Escape') {
-            if (isFullscreen) exitFullscreen();
-            else closeModal();
-        } else if (e.key === 'ArrowLeft') prevImage();
-        else if (e.key === 'ArrowRight') nextImage();
-        else if (e.key.toLowerCase() === 'f') {
-            if (isFullscreen) exitFullscreen();
-            else enterFullscreen();
+            
+            const card = e.target.closest('.car-card');
+            const mainImg = card.querySelector('.main-image');
+            const thumbnails = card.querySelectorAll('.thumbnail');
+            
+            thumbnails.forEach(t => t.classList.remove('active'));
+            e.target.classList.add('active');
+            mainImg.src = e.target.src;
         }
     });
 </script>

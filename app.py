@@ -1,5 +1,5 @@
 # app.py
-from flask import Flask, render_template
+from flask import Flask, render_template, request, jsonify
 import requests
 from dotenv import load_dotenv
 import os
@@ -137,6 +137,7 @@ def fetch_listings():
         description = item.get("description", "No description available.").replace('\r', '') # Clean description
         variant = item.get("variant", "")
         body_type = item.get("bodyType", "")
+        engine = item.get("engine", "N/A")
 
         # --- START OF PRICE HANDLING FIX ---
         price_value_for_sorting = 0
@@ -234,7 +235,8 @@ def fetch_listings():
             "mileage": formatted_mileage, # New field for mileage
             "description": description,
             "created": created,  # Keep original ISO string for debugging/display
-            "created_timestamp": created_timestamp  # For sorting
+            "created_timestamp": created_timestamp,  # For sorting
+            "engine": engine
         })
 
     # 🔥 Sort by 'created_timestamp' — newest first
@@ -248,6 +250,145 @@ def fetch_listings():
 def index():
     listings = fetch_listings()
     return render_template("index.html", listings=listings)
+
+
+@app.route("/listing/<int:listing_id>")
+def listing_detail(listing_id):
+    # First check if we have the listing in our current listings
+    listings = fetch_listings()
+    for listing in listings:
+        if str(listing.get("id")) == str(listing_id):
+            return render_template("listing.html", car=listing)
+    
+    # If not found, try to fetch directly from API
+    try:
+        response = requests.get(
+            API_URL,
+            auth=(USERNAME, PASSWORD),
+            timeout=10,
+            headers={
+                "Accept": "application/json",
+                "User-Agent": "AutoTrader-Client-App/1.0"
+            }
+        )
+        
+        if response.status_code == 200:
+            raw_data = response.json()
+            
+            # Normalize response structure
+            if isinstance(raw_data, list):
+                raw_listings = raw_data
+            elif isinstance(raw_data, dict):
+                raw_listings = raw_data.get("listings", []) or raw_data.get("vehicles", []) or []
+            else:
+                raw_listings = []
+            
+            # Find the specific listing
+            for item in raw_listings:
+                if str(item.get("id")) == str(listing_id):
+                    # Process the single listing
+                    make = item.get("make", "Unknown").title()
+                    model = item.get("model", "Model").title()
+                    year = item.get("year", "N/A")
+                    location = item.get("location", "South Africa")
+                    colour = item.get("colour", "Unknown")
+                    description = item.get("description", "No description available.").replace('\r', '')
+                    variant = item.get("variant", "")
+                    body_type = item.get("bodyType", "")
+                    engine = item.get("engine", "N/A")
+
+                    # Price handling
+                    price_value_for_sorting = 0
+                    price_display = "POA"
+                    raw_price_str = item.get("price", "")
+
+                    if isinstance(raw_price_str, str):
+                         raw_price_str = raw_price_str.strip()
+
+                    if not raw_price_str or (isinstance(raw_price_str, str) and raw_price_str.upper() in ["POA", "ON REQUEST", "PRICE ON APPLICATION", ""]):
+                        price_display = "POA"
+                        price_value_for_sorting = 0
+                    else:
+                        try:
+                            if isinstance(raw_price_str, str):
+                                parts = raw_price_str.split(',')
+                                if len(parts) == 2:
+                                    major_part_str = parts[0]
+                                    minor_part_str = parts[1][:2]
+                                    major_digits_only = ''.join(filter(str.isdigit, major_part_str))
+                                    if not major_digits_only:
+                                         major_digits_only = "0"
+                                    price_float_str = f"{major_digits_only}.{minor_part_str}"
+                                    price_value_for_sorting = float(price_float_str)
+                                    major_int = int(major_digits_only)
+                                    formatted_major = f"{major_int:,}".replace(',', ' ')
+                                    price_display = f"R{formatted_major}"
+                                else:
+                                    clean_str = ''.join(filter(str.isdigit, raw_price_str))
+                                    if clean_str:
+                                        price_value_for_sorting = float(clean_str)
+                                        price_display = f"R{price_value_for_sorting:,.0f}".replace(',', ' ')
+                                    else:
+                                         price_display = "POA"
+                                         price_value_for_sorting = 0
+                            elif isinstance(raw_price_str, (int, float)):
+                                price_value_for_sorting = float(raw_price_str)
+                                price_display = f"R{price_value_for_sorting:,.0f}".replace(',', ' ')
+                            else:
+                                 price_display = "POA"
+                                 price_value_for_sorting = 0
+                        except (ValueError, IndexError, TypeError) as e:
+                            print(f"⚠️ Error parsing price '{raw_price_str}': {e}")
+                            price_display = "POA"
+                            price_value_for_sorting = 0
+
+                    # Mileage handling
+                    mileage = item.get("mileageInKm", 0)
+                    formatted_mileage = f"{mileage:,}".replace(',', ' ')
+
+                    # Images
+                    image_urls = item.get("imageUrls", [])
+                    if not image_urls:
+                        image_urls = [f"https://source.unsplash.com/random/800x600/?car,{make.lower()}+{model.lower()}"]
+
+                    # Created timestamp
+                    created = item.get("created", "")
+                    created_timestamp = parse_iso_datetime(created) if created else time.time()
+
+                    return render_template("listing.html", car={
+                        "id": item.get("id"),
+                        "make": make,
+                        "model": model,
+                        "year": year,
+                        "price_display": price_display,
+                        "price": price_value_for_sorting,
+                        "image_urls": image_urls,
+                        "variant": variant,
+                        "body_type": body_type,
+                        "colour": colour,
+                        "location": location,
+                        "mileage": formatted_mileage,
+                        "description": description,
+                        "created": created,
+                        "created_timestamp": created_timestamp,
+                        "engine": engine
+                    })
+    except Exception as e:
+        print(f"🚨 Error fetching listing {listing_id}: {e}")
+    
+    return "Car not found", 404
+
+
+# Add route for contact page
+@app.route("/contact.html")
+def contact():
+    return render_template("contact.html")
+
+
+# Alternative route for contact (without .html extension)
+@app.route("/contact")
+def contact_page():
+    return render_template("contact.html")
 
 
 if __name__ == "__main__":

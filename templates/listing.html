@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="Viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>{{ car.make }} {{ car.model }} - The Agents</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="StyleSheet">
+    <link rel="StyleSheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f8f9fa;
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: #000000;
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+            vertical-align: middle;
+        }
+
+        nav a {
+            color: #ffffff;
+            margin-left: 20px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        nav a:hover {
+            opacity: 0.9;
+            color: #D4AF37;
+        }
+
+        /* Main Content */
+        main {
+            padding: 20px 0 60px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #D4AF37;
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-link i {
+            margin-right: 5px;
+        }
+
+        .listing-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .listing-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .image-gallery {
+            position: relative;
+            background-color: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .main-image-container {
+            height: 500px;
+            overflow: hidden;
+            border-radius: 16px;
+            background-color: #f5f5f5;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .main-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+            border-radius: 16px;
+        }
+
+        .details-section {
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            margin-top: 20px;
+        }
+
+        .make-model {
+            font-size: 2em;
+            font-weight: 700;
+            color: #000000;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #D4AF37;
+            margin: 15px 0;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .info-item {
+            padding: 12px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+
+        .info-item strong {
+            color: #000000;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .description {
+            margin-top: 30px;
+            line-height: 1.8;
+            white-space: pre-wrap;
+            font-size: 0.95em;
+            color: #555;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+
+        /* Download & Share Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .download-btn, .share-btn {
+            background: #D4AF37;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 1em;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-width: 120px;
+        }
+
+        .download-btn:hover, .share-btn:hover {
+            background: #c19d2a;
+        }
+
+        /* Footer */
+        footer {
+            background: #000000;
+            color: #ffffff;
+            padding: 40px 0 20px;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 20px;
+        }
+
+        .footer-section h3 {
+            color: #D4AF37;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #cccccc;
+            font-size: 0.9em;
+            margin-bottom: 8px;
+            display: block;
+            text-decoration: none;
+        }
+
+        .footer-section a:hover {
+            color: #D4AF37;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            color: #999;
+            font-size: 0.9em;
+            border-top: 1px solid #333;
+            margin-top: 30px;
+        }
+
+        /* Lightbox styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 100vw;
+            max-height: 100 vh;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        .lightbox-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+            max-width: 100%;
+            max-height: 100%;
+            margin: auto;
+        }
+
+        .lightbox-navigation {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        .lightbox-navigation button {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5em;
+            transition: all 0.3s;
+        }
+
+        .lightbox-navigation button:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .lightbox-info {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            font-size: 0.9em;
+            z-index: 10;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5em;
+            transition: all 0.3s;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .gallery-thumbnails {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 15px 0;
+            background-color: #f8f9fa;
+            border-radius: 12px;
+            scrollbar-width: thin;
+            scrollbar-color: #D4AF37 #f8f9fa;
+        }
+
+        .gallery-thumbnails::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .gallery-thumbnails::-webkit-scrollbar-track {
+            background: #f8f9fa;
+            border-radius: 3px;
+        }
+
+        .gallery-thumbnails::-webkit-scrollbar-thumb {
+            background: #D4AF37;
+            border-radius: 3px;
+        }
+
+        .thumbnail {
+            width: 100px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 3px solid transparent;
+            cursor: pointer;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .thumbnail:hover {
+            transform: scale(1.05);
+            filter: brightness(1.1);
+        }
+
+        .thumbnail.active {
+            border-color: #D4AF37;
+            outline: 2px solid #fff;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+    <div class="container header-content">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='logo.jpg') }}" alt="The Agents Logo">
+        </div>
+        <nav>
+            <a href="/">Home</a>
+            <a href="#about-section">About</a>
+            <a href="#contact-section">Contact</a>
+        </nav>
+    </div>
+</header>
+
+<!-- Main -->
+<main class="container">
+    <a href="/" class="back-link"><i class="fas fa-arrow-left"></i> Back to Listings</a>
+    
+    <div class="listing-container">
+        <div class="image-gallery">
+            <div class="main-image-container">
+                <img id="mainImage" class="main-image" src="{{ car.image_urls[0] if car.image_urls else '' }}" alt="{{ car.make }} {{ car.model }}">
+            </div>
+            <div class="gallery-thumbnails" id="thumbnails">
+                {% for image in car.image_urls %}
+                <img src="{{ image }}" alt="Thumbnail" class="thumbnail {% if loop.index0 == 0 %}active{% endif %}" 
+                     onclick="changeImage(this)">
+                {% endfor %}
+            </div>
+            <div class="action-buttons">
+                <button id="downloadBtn" class="download-btn"><i class="fas fa-download"></i> Download Image</button>
+                <button id="shareBtn" class="share-btn"><i class="fas fa-share"></i> Share</button>
+            </div>
+        </div>
+        
+        <div class="details-section">
+            <h1 class="make-model">{{ car.make }} {{ car.model }} {% if car.variant %}{{ car.variant }}{% endif %}</h1>
+            <p class="price">{{ car.price_display }}</p>
+            
+            <div class="info-grid">
+                <div class="info-item">
+                    <strong>Year</strong>
+                    <span>{{ car.year }}</span>
+                </div>
+                <div class="info-item">
+                    <strong>Colour</strong>
+                    <span>{{ car.colour }}</span>
+                </div>
+                <div class="info-item">
+                    <strong>Body Type</strong>
+                    <span>{{ car.body_type or 'N/A' }}</span>
+                </div>
+                <div class="info-item">
+                    <strong>Location</strong>
+                    <span>{{ car.location }}</span>
+                </div>
+                <div class="info-item">
+                    <strong>Mileage</strong>
+                    <span>{{ car.mileage }} Km</span>
+                </div>
+                <div class="info-item">
+                    <strong>Engine</strong>
+                    <span>{{ car.engine }}</span>
+                </div>
+            </div>
+            
+            <div class="description">{{ car.description }}</div>
+        </div>
+    </div>
+</main>
+
+<!-- Lightbox -->
+<div id="lightbox" class="lightbox">
+    <div class="lightbox-content">
+        <img id="lightboxImage" class="lightbox-image" src="" alt="">
+        <div class="lightbox-navigation">
+            <button id="prevImageBtn" onclick="prevImage()"><i class="fas fa-chevron-left"></i></button>
+            <button id="nextImageBtn" onclick="nextImage()"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="lightbox-info" id="lightboxInfo">1 / {{ car.image_urls|length }}</div>
+        <button class="lightbox-close" onclick="closeLightbox()"><i class="fas fa-times"></i></button>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>Your trusted partner for finding the perfect vehicle in South Africa.
+                </p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="/">Home</a>
+                <a href="/">Search Cars</a>
+                <a href="/">About</a>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 229A Bram Fischer Drive, Randburg, Gauteng</p>
+                <p><i class="fas fa-phone"></i> 087 036 8087</p>
+                <p><i class="fas fa-envelope"></i> autoagents23@gmail.com</p>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2025 The Agents. All rights reserved.
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Change main image when thumbnail is clicked
+    function changeImage(element) {
+        document.getElementById('mainImage').src = element.src;
+        document.querySelectorAll('.thumbnail').forEach(thumb => {
+            thumb.classList.remove('active');
+        });
+        element.classList.add('active');
+    }
+
+    // Initialize lightbox variables
+    let currentImageIndex = 0;
+    const images = {{ car.image_urls | tojson }};
+    const totalImages = images.length;
+
+    // Open lightbox when main image is clicked
+    document.getElementById('mainImage').onclick = function() {
+        openLightbox();
+    };
+
+    // Open lightbox
+    function openLightbox() {
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = document.getElementById('lightboxImage');
+        const lightboxInfo = document.getElementById('lightboxInfo');
+        
+        // Set first image
+        lightboxImage.src = images[currentImageIndex];
+        lightboxInfo.textContent = `${currentImageIndex + 1} / ${totalImages}`;
+        
+        // Show lightbox
+        lightbox.classList.add('active');
+        
+        // Update navigation buttons
+        updateNavigationButtons();
+    }
+
+    // Close lightbox
+    function closeLightbox() {
+        const lightbox = document.getElementById('lightbox');
+        lightbox.classList.remove('active');
+    }
+
+    // Navigate to previous image
+    function prevImage() {
+        if (currentImageIndex > 0) {
+            currentImageIndex--;
+            document.getElementById('lightboxImage').src = images[currentImageIndex];
+            document.getElementById('lightboxInfo').textContent = `${currentImageIndex + 1} / ${totalImages}`;
+            updateNavigationButtons();
+        }
+    }
+
+    // Navigate to next image
+    function nextImage() {
+        if (currentImageIndex < totalImages - 1) {
+            currentImageIndex++;
+            document.getElementById('lightboxImage').src = images[currentImageIndex];
+            document.getElementById('lightboxInfo').textContent = `${currentImageIndex + 1} / ${totalImages}`;
+            updateNavigationButtons();
+        }
+    }
+
+    // Update navigation buttons state
+    function updateNavigationButtons() {
+        const prevBtn = document.getElementById('prevImageBtn');
+        const nextBtn = document.getElementById('nextImageBtn');
+        
+        prevBtn.disabled = currentImageIndex === 0;
+        nextBtn.disabled = currentImageIndex === totalImages - 1;
+    }
+
+    // Keyboard shortcuts
+    document.addEventListener('keydown', function(e) {
+        const lightbox = document.getElementById('lightbox');
+        if (lightbox.classList.contains('active')) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            } else if (e.key === 'ArrowLeft') {
+                prevImage();
+            } else if (e.key === 'ArrowRight') {
+                nextImage();
+            }
+        }
+    });
+
+    // Touch swipe support
+    let startX = 0;
+    document.getElementById('lightboxImage').addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+    }, { passive: true });
+
+    document.getElementById('lightboxImage').addEventListener('touchend', (e) => {
+        const currentX = e.changedTouches[0].clientX;
+        const diff = startX - currentX;
+
+        if (diff > 50 && currentImageIndex < totalImages - 1) {
+            nextImage();
+        } else if (diff < -50 && currentImageIndex > 0) {
+            prevImage();
+        }
+    }, { passive: true });
+
+    // Download button
+    document.getElementById('downloadBtn').onclick = function() {
+        const mainImage = document.getElementById('mainImage');
+        const link = document.createElement('a');
+        link.href = mainImage.src;
+        const filename = '{{ car.make }}_{{ car.model }}_{{ car.years }}.jpg'.replace(/\s+/g, '_');
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
+
+    // Share button
+    document.getElementById('shareBtn').onclick = function() {
+        const url = window.location.href;
+        navigator.clipboard.writeText(url).then(() => {
+            alert("✅ Link copied to clipboard!");
+        }).catch(err => {
+            console.error("Copy failed:", err);
+            // Fallback for older browsers
+            const textArea = document.createElement("textarea");
+            textArea.value = url;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand("copy");
+            document.body.removeChild(textArea);
+            alert("✅ Link copied to clipboard!");
+        });
+    };
+</script>
+
+</body>
+</html>
