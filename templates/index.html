@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>The Agents - Vehicle Listings</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <link rel="stylesheet" href="  https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css  "/>
     <style>
         * {
             margin: 0;
@@ -62,12 +62,73 @@
             color: #D4AF37;
         }
 
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1494976388531-d1058494cdd8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+            filter: brightness(0.4);
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #D4AF37;
+            color: #000;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: 2px solid #D4AF37;
+        }
+
+        .cta-button:hover {
+            background: transparent;
+            color: #D4AF37;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
         /* Main Content */
         main {
             padding: 20px 0 60px;
         }
 
-        h1 {
+        .main-title {
             text-align: center;
             color: #D4AF37;
             margin-bottom: 10px;
@@ -95,6 +156,101 @@
             background-color: #fff;
             cursor: pointer;
         }
+        /* --- Multi-Filter Styles --- */
+#multiFilterContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    padding: 15px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    margin-bottom: 25px;
+    border: 1px solid #eee;
+}
+
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.filter-group label {
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.filter-group input[type="text"],
+.filter-group input[type="number"],
+.filter-group select {
+    padding: 6px 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.95em;
+    width: 120px; /* Adjust width as needed */
+    box-sizing: border-box; /* Include padding/border in width */
+}
+
+.filter-group input[type="text"] {
+    width: 180px; /* Wider for search */
+}
+
+.filter-group input[type="number"] {
+    width: 100px; /* Specific width for numbers */
+}
+
+.filter-group button {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+#applyFiltersBtn {
+    background-color: #D4AF37;
+    color: white;
+}
+
+#applyFiltersBtn:hover {
+    background-color: #c19d2a;
+}
+
+#resetFiltersBtn {
+    background-color: #f0f0f0;
+    color: #333;
+    border: 1px solid #ccc;
+}
+
+#resetFiltersBtn:hover {
+    background-color: #e0e0e0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    #multiFilterContainer {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .filter-group {
+        justify-content: space-between;
+    }
+    .filter-group input[type="text"],
+    .filter-group input[type="number"],
+    .filter-group select {
+        flex-grow: 1;
+    }
+}
+/* --- End Multi-Filter Styles --- */
+
+        .details p i {
+            color: #D4AF37;
+            margin-right: 6px;
+        }
+        
 
         .car-grid {
             display: grid;
@@ -209,6 +365,23 @@
             overflow: hidden;
             text-decoration: none;
         }
+        
+        /* Read More Button */
+.read-more-btn {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 0.9em;
+    color: #D4AF37;
+    text-decoration: none;
+    border-bottom: 1px solid #D4AF37;
+    transition: all 0.2s ease;
+    padding: 2px 0;
+}
+
+.read-more-btn:hover {
+    color: #c19d2a;
+    border-color: #c19d2a;
+}
 
         .no-listings {
             grid-column: 1 / -1;
@@ -362,9 +535,18 @@
     </div>
 </header>
 
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Find Your Dream Car</h1>
+        <p>Premium vehicles at competitive prices across South Africa</p>
+        <a href="#carGrid" class="cta-button">Browse Inventory</a>
+    </div>
+</section>
+
 <!-- Main -->
 <main class="container">
-    <h1>The Agents</h1>
+    <h1 class="main-title"></h1>
 
     <!-- Sort Dropdown -->
     <div id="sortContainer">
@@ -376,6 +558,47 @@
             <option value="recent">Most Recent</option>
         </select>
     </div>
+
+    <!-- Multi-Filter Container -->
+<div id="multiFilterContainer">
+    <!-- Search Input -->
+    <div class="filter-group">
+        <label for="searchInput"><i class="fas fa-search"></i> Search:</label>
+        <input type="text" id="searchInput" placeholder="e.g., Audi, A4, Automatic...">
+    </div>
+
+    <!-- Price Range -->
+    <div class="filter-group">
+        <label for="minPriceInput"><i class="fas fa-tag"></i> Price:</label>
+        <input type="number" id="minPriceInput" placeholder="Min (R)" min="0">
+        <span> - </span>
+        <input type="number" id="maxPriceInput" placeholder="Max (R)" min="0">
+    </div>
+
+    <!-- Year Dropdown -->
+    <div class="filter-group">
+        <label for="yearSelect"><i class="fas fa-calendar"></i> Year:</label>
+        <select id="yearSelect">
+            <option value="">Any Year</option>
+            <!-- Options will be populated by JS -->
+        </select>
+    </div>
+
+    <!-- Make Dropdown -->
+    <div class="filter-group">
+        <label for="makeSelect"><i class="fas fa-car"></i> Make:</label>
+        <select id="makeSelect">
+            <option value="">Any Make</option>
+            <!-- Options will be populated by JS -->
+        </select>
+    </div>
+
+    <!-- Apply/Reset Buttons -->
+    <div class="filter-group">
+        <button id="applyFiltersBtn">Apply Filters</button>
+        <button id="resetFiltersBtn">Reset</button>
+    </div>
+</div>
 
     <div class="car-grid" id="carGrid">
         <!-- Cars will be inserted here dynamically -->
@@ -409,10 +632,10 @@
                 <p><i class="fas fa-phone"></i> 087 036 8087</p>
                 <p><i class="fas fa-envelope"></i> autoagents23@gmail.com</p>
                 <div class="social-icons">
-                    <a href="https://wa.me/27123456789" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                    <a href="https://facebook.com/theautoagents" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://instagram.com/theautoagents" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://twitter.com/theautoagents" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://wa.me/27123456789  " target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://facebook.com/theautoagents  " target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://instagram.com/theautoagents  " target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com/theautoagents  " target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
                 </div>
             </div>
         </div>
@@ -431,20 +654,116 @@
     let currentPage = 1;
     const carsPerPage = 12;
 
+    // Object to hold current filter values
+    const activeFilters = {
+        search: '',
+        minPrice: null,
+        maxPrice: null,
+        year: '',
+        make: ''
+    };
+
     // DOM Elements
     const carGrid = document.getElementById("carGrid");
     const prevPageBtn = document.getElementById("prevPage");
     const nextPageBtn = document.getElementById("nextPage");
     const pageInfo = document.getElementById("pageInfo");
+    const searchInput = document.getElementById("searchInput");
+    const minPriceInput = document.getElementById("minPriceInput");
+    const maxPriceInput = document.getElementById("maxPriceInput");
+    const yearSelect = document.getElementById("yearSelect");
+    const makeSelect = document.getElementById("makeSelect");
+    const applyFiltersBtn = document.getElementById("applyFiltersBtn");
+    const resetFiltersBtn = document.getElementById("resetFiltersBtn");
 
-    // === SORTING FUNCTION ===
+    // === POPULATE FILTER DROPDOWNS ===
+    function populateFilterDropdowns() {
+        const years = new Set();
+        const makes = new Set();
+
+        allListings.forEach(car => {
+            if (car.year) years.add(car.year);
+            if (car.make) makes.add(car.make);
+        });
+
+        // Populate Year Dropdown (sorted descending)
+        const sortedYears = Array.from(years).sort((a, b) => b - a);
+        sortedYears.forEach(year => {
+            const option = document.createElement("option");
+            option.value = year;
+            option.textContent = year;
+            yearSelect.appendChild(option);
+        });
+
+        // Populate Make Dropdown (sorted alphabetically)
+        const sortedMakes = Array.from(makes).sort();
+        sortedMakes.forEach(make => {
+            const option = document.createElement("option");
+            option.value = make;
+            option.textContent = make;
+            makeSelect.appendChild(option);
+        });
+    }
+
+    // === MAIN FILTERING FUNCTION ===
+    function filterListings() {
+        // Get current filter values from inputs
+        activeFilters.search = searchInput.value.trim().toLowerCase();
+        activeFilters.minPrice = minPriceInput.value ? parseFloat(minPriceInput.value) : null;
+        activeFilters.maxPrice = maxPriceInput.value ? parseFloat(maxPriceInput.value) : null;
+        activeFilters.year = yearSelect.value;
+        activeFilters.make = makeSelect.value;
+
+        let filteredListings = [...allListings];
+
+        // Apply Search Filter
+        if (activeFilters.search) {
+            filteredListings = filteredListings.filter(car =>
+                (car.make && car.make.toLowerCase().includes(activeFilters.search)) ||
+                (car.model && car.model.toLowerCase().includes(activeFilters.search)) ||
+                (car.variant && car.variant.toLowerCase().includes(activeFilters.search)) ||
+                (car.description && car.description.toLowerCase().includes(activeFilters.search)) ||
+                (car.transmission && car.transmission.toLowerCase().includes(activeFilters.search)) ||
+                (car.fuel_type && car.fuel_type.toLowerCase().includes(activeFilters.search))
+                // Add more fields if needed
+            );
+        }
+
+        // Apply Price Filter
+        if (activeFilters.minPrice !== null || activeFilters.maxPrice !== null) {
+            filteredListings = filteredListings.filter(car => {
+                const priceValue = parseFloat((car.price || "0").toString().replace(/[^0-9,]/g, '').replace(',', '.')) || 0;
+                const passesMin = activeFilters.minPrice === null || priceValue >= activeFilters.minPrice;
+                const passesMax = activeFilters.maxPrice === null || priceValue <= activeFilters.maxPrice;
+                return passesMin && passesMax;
+            });
+        }
+
+        // Apply Year Filter
+        if (activeFilters.year) {
+            filteredListings = filteredListings.filter(car => car.year == activeFilters.year);
+        }
+
+        // Apply Make Filter
+        if (activeFilters.make) {
+            filteredListings = filteredListings.filter(car => car.make == activeFilters.make);
+        }
+
+        // Update currentListings and re-render
+        currentListings = filteredListings;
+        currentPage = 1; // Reset to first page
+        renderPage();
+        updatePaginationButtons();
+    }
+
+    // === SORTING FUNCTION (now works on filtered list) ===
     function sortListings() {
         const sortValue = document.getElementById("sortSelect").value;
         let sortedListings;
 
         switch (sortValue) {
             case "price-low":
-                sortedListings = [...allListings].sort((a, b) => {
+                sortedListings = [...currentListings].sort((a, b) => {
                     const priceA = parseFloat((a.price || "0").toString().replace(/[^0-9,]/g, '').replace(',', '.')) || 0;
                     const priceB = parseFloat((b.price || "0").toString().replace(/[^0-9,]/g, '').replace(',', '.')) || 0;
                     return priceA - priceB;
@@ -452,7 +771,7 @@
                 break;
 
             case "price-high":
-                sortedListings = [...allListings].sort((a, b) => {
+                sortedListings = [...currentListings].sort((a, b) => {
                      const priceA = parseFloat((a.price || "0").toString().replace(/[^0-9,]/g, '').replace(',', '.')) || 0;
                      const priceB = parseFloat((b.price || "0").toString().replace(/[^0-9,]/g, '').replace(',', '.')) || 0;
                     return priceB - priceA;
@@ -462,27 +781,42 @@
              case "recent": // Most recent first
             case "default": // Assuming default is also most recent first
             default:
-                sortedListings = [...allListings].sort((a, b) => {
+                sortedListings = [...currentListings].sort((a, b) => {
                     const dateA = new Date(a.created || 0);
                     const dateB = new Date(b.created || 0);
                     return dateB - dateA;
                 });
         }
 
-        // Update currentListings and re-render
+        // Update currentListings with sorted version and re-render
         currentListings = sortedListings;
-        currentPage = 1; // Reset to first page
+        currentPage = 1; // Reset to first page on sort
         renderPage();
         updatePaginationButtons();
     }
 
-    // Initial render and sort
-    window.onload = function () {
-        document.getElementById("sortSelect").value = "default";
-        sortListings();
-    };
+    // === RESET FILTERS FUNCTION ===
+    function resetFilters() {
+        searchInput.value = '';
+        minPriceInput.value = '';
+        maxPriceInput.value = '';
+        yearSelect.value = '';
+        makeSelect.value = '';
 
-    // Render current page of cars
+        // Reset active filters object
+        activeFilters.search = '';
+        activeFilters.minPrice = null;
+        activeFilters.maxPrice = null;
+        activeFilters.year = '';
+        activeFilters.make = '';
+
+        // Re-filter (which will now use reset filters)
+        filterListings();
+        // Re-sort if needed (optional, or keep last sort)
+        // sortListings();
+    }
+
+    // === RENDERING & PAGINATION (unchanged) ===
     function renderPage() {
         const start = (currentPage - 1) * carsPerPage;
         const end = start + carsPerPage;
@@ -500,35 +834,35 @@
             const variantLine = car.variant ? `<span class="variant">${car.variant}</span>` : "";
             const desc = car.description?.substring(0, 100) + (car.description?.length > 100 ? "..." : "");
 
-            // Create a link element for the entire card
             const carLink = document.createElement("a");
             carLink.href = `/listing/${car.id}`;
             carLink.className = "car-card";
-            
+
             carLink.innerHTML = `
-                <div class="image-gallery">
-                    <img src="${firstImg}" alt="${car.make} ${car.model}" class="main-image">
-                </div>
-                <div class="gallery-thumbnails">
-                    ${car.image_urls?.slice(0, 4).map((img, i) =>
-                        `<img src="${img}" alt="Thumb" class="thumbnail ${i === 0 ? 'active' : ''}">`
-                    ).join('') || ''}
-                </div>
-                <div class="details">
-                    <h3 class="make-model">${car.make} ${car.model} ${variantLine}</h3>
-                    <p class="year">📅 ${car.year}</p>
-                    <p class="colour">🎨 ${car.colour}</p>
-                    <p class="mileage">📏 ${car.mileage} Km</p>
-                    <p class="price">${car.price_display}</p>
-                    <p class="description">${desc}</p>
-                </div>
-            `;
-            
+    <div class="image-gallery">
+        <img src="${firstImg}" alt="${car.make} ${car.model}" class="main-image">
+    </div>
+    <div class="gallery-thumbnails">
+        ${car.image_urls?.slice(0, 4).map((img, i) =>
+            `<img src="${img}" alt="Thumb" class="thumbnail ${i === 0 ? 'active' : ''}">`
+        ).join('') || ''}
+    </div>
+    <div class="details">
+        <h3 class="make-model">${car.make} ${car.model} ${variantLine}</h3>
+        <p class="year"><i class="fas fa-calendar-alt"></i> ${car.year}</p>
+        <p class="colour"><i class="fas fa-palette"></i> ${car.colour}</p>
+        <p class="mileage"><i class="fas fa-road"></i> ${car.mileage} Km</p>
+        <p class="price">${car.price_display}</p>
+        <p class="description">${desc}</p>
+        <!-- Read More Button -->
+        <a href="/listing/${car.id}" class="read-more-btn">Read More</a>
+    </div>
+`;
+
             carGrid.appendChild(carLink);
         });
     }
 
-    // Update pagination UI
     function updatePaginationButtons() {
         const totalPages = Math.ceil(currentListings.length / carsPerPage);
         pageInfo.innerHTML = `Page <strong>${currentPage}</strong> of ${totalPages || 1}`;
@@ -536,7 +870,7 @@
         nextPageBtn.disabled = currentPage >= totalPages;
     }
 
-    // Pagination event listeners
+    // === EVENT LISTENERS ===
     prevPageBtn.addEventListener("click", () => {
         if (currentPage > 1) {
             currentPage--;
@@ -556,22 +890,42 @@
         }
     });
 
-    // Thumbnail switch inside card
     carGrid.addEventListener("click", function(e) {
         if (e.target.classList.contains("thumbnail")) {
             e.preventDefault();
             e.stopPropagation();
-            
+
             const card = e.target.closest('.car-card');
             const mainImg = card.querySelector('.main-image');
             const thumbnails = card.querySelectorAll('.thumbnail');
-            
+
             thumbnails.forEach(t => t.classList.remove('active'));
             e.target.classList.add('active');
             mainImg.src = e.target.src;
         }
     });
+
+    // Apply filters button
+    applyFiltersBtn.addEventListener("click", filterListings);
+
+    // Reset filters button
+    resetFiltersBtn.addEventListener("click", resetFilters);
+
+    // Optional: Apply filters on pressing Enter in search input
+    searchInput.addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            filterListings();
+        }
+    });
+
+    // === INITIALIZE ON LOAD ===
+    window.onload = function () {
+        populateFilterDropdowns();
+        document.getElementById("sortSelect").value = "default";
+        filterListings(); // Apply initial (empty) filters
+        sortListings(); // Apply initial sort
+    };
 </script>
 
 </body>
-</html>
+</html> 
