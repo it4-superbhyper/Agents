@@ -349,7 +349,7 @@ def listing_detail(listing_id):
                     # Images
                     image_urls = item.get("imageUrls", [])
                     if not image_urls:
-                        image_urls = [f"https://source.unsplash.com/random/800x600/?car,{make.lower()}+{model.lower()}"]
+                        image_urls = [f"  https://source.unsplash.com/random/800x600/?car,{make.lower()}+{model.lower()}"]
 
                     # Created timestamp
                     created = item.get("created", "")
@@ -377,6 +377,18 @@ def listing_detail(listing_id):
         print(f"🚨 Error fetching listing {listing_id}: {e}")
     
     return "Car not found", 404
+
+
+# Add route for finance calculator page
+@app.route("/finance")
+def finance():
+    return render_template("finance.html")
+
+
+# Alternative route for finance (with .html extension)
+@app.route("/finance.html")
+def finance_html():
+    return render_template("finance.html")
 
 
 # Add route for contact page
