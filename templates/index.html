@@ -509,6 +509,18 @@
             margin-top: 30px;
         }
 
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+        
+        .contact-item i {
+            min-width: 16px;
+            color: #D4AF37;
+        }
+
         /* Remove underlines from all links */
         a {
             text-decoration: none;
@@ -525,7 +537,9 @@
 <header>
     <div class="container header-content">
         <div class="logo">
-            <img src="{{ url_for('static', filename='logo.jpg') }}" alt="The Agents Logo">
+            <a href="/">
+                <img src="{{ url_for('static', filename='logo.jpg') }}" alt="The Agents Logo">
+            </a>
         </div>
         <nav>
             <a href="/">Home</a>
@@ -628,14 +642,27 @@
             </div>
             <div class="footer-section" id="contact-section">
                 <h3>Contact Info</h3>
-                <p><i class="fas fa-map-marker-alt"></i> 229A Bram Fischer Drive, Randburg, Gauteng</p>
-                <p><i class="fas fa-phone"></i> 087 036 8087</p>
-                <p><i class="fas fa-envelope"></i> autoagents23@gmail.com</p>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i> 
+                    <a href="https://maps.google.com/?q=229A+Bram+Fischer+Drive,+Randburg,+Gauteng" target="_blank">
+                        229A Bram Fischer Drive, Randburg, Gauteng
+                    </a>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i> 
+                    <a href="tel:0870368087">087 036 8087</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i> 
+                    <a href="mailto:autoagents23@gmail.com">autoagents23@gmail.com</a>
+                </div>
+                
+                <!-- Social Media Icons -->
                 <div class="social-icons">
-                    <a href="https://wa.me/27123456789  " target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                    <a href="https://facebook.com/theautoagents  " target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://instagram.com/theautoagents  " target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://twitter.com/theautoagents  " target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://wa.me/27123456789" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://facebook.com/theautoagents" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://instagram.com/theautoagents" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com/theautoagents" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
                 </div>
             </div>
         </div>

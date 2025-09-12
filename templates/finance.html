@@ -353,14 +353,17 @@
 <body>
 
 <!-- Header -->
+<!-- Header -->
 <header>
     <div class="container header-content">
         <div class="logo">
-            <img src="{{ url_for('static', filename='logo.jpg') }}" alt="The Agents Logo">
+            <a href="/">
+                <img src="{{ url_for('static', filename='logo.jpg') }}" alt="The Agents Logo">
+            </a>
         </div>
         <nav>
             <a href="/">Home</a>
-            <a href="/finance.html">Finance</a>
+            <a href="/finance">Finance</a>
             <a href="/contact.html">Contact</a>
         </nav>
     </div>
