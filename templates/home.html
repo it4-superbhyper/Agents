@@ -109,91 +109,98 @@
         }
 
         /* Hero Slideshow */
-        .hero-slideshow {
-            position: relative;
-            height: 100vh;
-            overflow: hidden;
-        }
+.hero-slideshow {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
 
-        .slides-container {
-            display: flex;
-            height: 100%;
-            transition: transform 0.8s ease-in-out;
-        }
+.slides-container {
+    display: flex;
+    height: 100%;
+    transition: transform 0.8s ease-in-out;
+}
 
-        .slide {
-            min-width: 100%;
-            height: 100%;
-            position: relative;
-        }
+.slide {
+    min-width: 100%;
+    height: 100%;
+    position: relative;
+}
 
-        .slide-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: brightness(0.5);
-        }
+.slide-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Keep cover for full coverage */
+    display: block;
+    background-size: cover;
+    background-position: center center; /* Ensure image is centered */
+}
 
-        .slide-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            color: white;
-            width: 90%;
-            max-width: 800px;
-            z-index: 2;
-            padding: 20px;
-        }
+/* Optional: Use 'contain' if you don't want any cropping */
+/* .slide-image {
+    object-fit: contain; // This will show entire image, but may have black bars
+} */
 
-        .slide-content h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 20px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-            letter-spacing: 1px;
-        }
+.slide-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    width: 90%;
+    max-width: 800px;
+    z-index: 2;
+    padding: 20px;
+}
 
-        .slide-content p {
-            font-size: 1.4rem;
-            margin-bottom: 30px;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
-        }
+.slide-content h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    letter-spacing: 1px;
+}
 
-        .slide-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.4);
-        }
+.slide-content p {
+    font-size: 1.4rem;
+    margin-bottom: 30px;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
 
-        .slideshow-nav {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 10px;
-            z-index: 3;
-        }
+.slide-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+}
 
-        .slide-indicator {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
+.slideshow-nav {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 3;
+}
 
-        .slide-indicator.active {
-            background: #D4AF37;
-            transform: scale(1.2);
-        }
+.slide-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.slide-indicator.active {
+    background: #D4AF37;
+    transform: scale(1.2);
+}
 
         /* Branding Section */
         .branding {
@@ -567,99 +574,133 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.3);
         }
 
-        /* Footer */
-        footer {
-            background: #000000;
-            color: #ffffff;
-            padding: 70px 0 30px;
-        }
+        /* --- Footer Styles --- */
 
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 50px;
-        }
+/* Base Footer Styling */
+footer {
+    background: #000000;
+    color: #ffffff;
+    padding: 70px 0 30px; /* Keeps large top padding */
+    font-family: 'Montserrat', sans-serif; /* Apply base font family */
+}
 
-        .footer-section h3 {
-            color: #D4AF37;
-            margin-bottom: 25px;
-            font-size: 1.4rem;
-            position: relative;
-            padding-bottom: 10px;
-            font-family: 'Montserrat', sans-serif;
-        }
+/* Footer Content Grid (for potential other sections) */
+.footer-content {
+    display: grid;
+    /* Keeps the grid for flexibility, but we'll primarily use one column for icons/copyright */
+    grid-template-columns: 1fr; /* Default to single column */
+    gap: 40px;
+    margin-bottom: 30px; /* Reduced margin below content */
+}
 
-        .footer-section h3:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 2px;
-            background: #D4AF37;
-        }
+/* Styles for potential footer sections (like Contact) */
+.footer-section h3 {
+    color: #D4AF37;
+    margin-bottom: 25px;
+    font-size: 1.4rem;
+    position: relative;
+    padding-bottom: 10px;
+    font-family: 'Montserrat', sans-serif;
+}
 
-        .footer-section p, .footer-section a {
-            color: #cccccc;
-            font-size: 1rem;
-            margin-bottom: 15px;
-            display: block;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
+.footer-section h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background: #D4AF37;
+}
 
-        .footer-section a:hover {
-            color: #D4AF37;
-            transform: translateX(5px);
-        }
+.footer-section p,
+.footer-section a {
+    color: #cccccc;
+    font-size: 1rem;
+    margin-bottom: 15px;
+    display: block;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
 
-        .contact-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-        
-        .contact-item i {
-            min-width: 20px;
-            color: #D4AF37;
-            margin-top: 5px;
-        }
+.footer-section a:hover {
+    color: #D4AF37;
+    transform: translateX(5px);
+}
 
-        /* Social Media Icons */
-        .social-icons {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 20px;
+}
 
-        .social-icons a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 45px;
-            height: 45px;
-            background: #333;
-            border-radius: 50%;
-            color: white;
-            font-size: 1.3rem;
-            transition: all 0.3s ease;
-        }
+.contact-item i {
+    min-width: 20px;
+    color: #D4AF37;
+    margin-top: 5px;
+}
 
-        .social-icons a:hover {
-            background: #D4AF37;
-            transform: translateY(-5px);
-        }
 
-        .copyright {
-            text-align: center;
-            padding-top: 30px;
-            color: #999;
-            font-size: 0.95rem;
-            border-top: 1px solid #333;
-            margin-top: 40px;
-        }
+/* --- Social Media Icons --- */
+/* Container for icons, centered */
+.social-icons {
+    display: flex;
+    justify-content: center; /* Center the icons horizontally */
+    gap: 20px; /* Slightly increased gap for better spacing */
+    margin: 20px 0; /* Add vertical margin around the icons */
+    /* Remove margin-top if it causes unwanted space */
+}
+
+/* Individual icon link styling */
+.social-icons a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px; /* Slightly larger icons */
+    height: 50px;
+    background: #333;
+    border-radius: 50%;
+    color: white;
+    font-size: 1.5rem; /* Slightly larger icon size */
+    transition: all 0.3s ease;
+    text-decoration: none; /* Ensure no underline */
+}
+
+.social-icons a:hover {
+    background: #D4AF37;
+    transform: translateY(-5px); /* Subtle lift effect */
+    /* Removed scale to prevent potential layout shift, translateY is smoother */
+}
+
+
+/* --- Copyright --- */
+/* Styling for the copyright text at the very bottom */
+.copyright {
+    text-align: center;
+    padding-top: 20px; /* Reduced padding */
+    color: #999;
+    font-size: 0.95rem;
+    border-top: 1px solid #333;
+    margin-top: 20px; /* Reduced margin */
+}
+
+
+/* Optional: Adjust container padding on smaller screens if needed */
+@media (max-width: 768px) {
+    footer {
+        padding: 50px 0 20px; /* Adjust padding for smaller screens */
+    }
+    .social-icons {
+        gap: 15px; /* Reduce gap on smaller screens */
+    }
+    .social-icons a {
+        width: 45px;
+        height: 45px;
+        font-size: 1.3rem;
+    }
+}
+
 
         /* Responsive */
         @media (max-width: 992px) {
@@ -672,20 +713,45 @@
             }
         }
 
+        /* Hide hamburger on desktop */
+.mobile-menu-toggle {
+    display: none;
+}
+
+        /* Hide desktop links on small screens */
         @media (max-width: 768px) {
-            .header-content {
+            .nav-links {
+                display: none; /* Hide desktop nav by default on mobile */
+                position: absolute;
+                top: 70px; /* Position below header */
+                left: 0;
+                width: 100%;
+                background: #000;
                 flex-direction: column;
+                padding: 15px 0;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+                z-index: 999;
+            }
+        
+            .nav-links.active {
+                display: flex; /* Show nav when active */
+            }
+        
+            .mobile-menu-toggle {
+                display: block; /* Show hamburger on mobile */
+                cursor: pointer;
+                font-size: 1.5rem;
+                color: white;
+                margin-left: auto; /* Push to right */
+            }
+        
+            nav a {
+                margin: 0; /* Remove horizontal spacing */
+                padding: 10px 20px; /* Add vertical padding */
+                display: block; /* Make links block elements */
                 text-align: center;
             }
-            
-            nav {
-                margin-top: 15px;
-            }
-            
-            nav a {
-                margin: 0 10px;
-                font-size: 0.9rem;
-            }
+        
             
             .slide-content h2 {
                 font-size: 2.2rem;
@@ -739,14 +805,21 @@
                 <img src="{{ url_for('static', filename='logo.jpg') }}" alt="The Agents Logo">
             </a>
         </div>
-            <nav>
+        <nav>
+            <!-- Hamburger Menu for Mobile -->
+            <div class="mobile-menu-toggle" id="mobileMenuToggle">
+                <i class="fas fa-bars"></i> <!-- Hamburger icon -->
+            </div>
+        
+            <!-- Desktop Navigation Links -->
+            <div class="nav-links" id="navLinks">
                 <a href="/">Home</a>
                 <a href="/inventory">Inventory</a>
                 <a href="/finance">Finance</a>
                 <a href="/about.html">About</a>
                 <a href="/contact.html">Contact</a>
-            </nav>
-        </div>
+            </div>
+        </nav>
     </header>
 
     <!-- Hero Slideshow -->
@@ -754,7 +827,7 @@
         <div class="slides-container">
             <!-- Slide 1 -->
             <div class="slide">
-                <img src="https://images.unsplash.com/photo-1542362567-b07e54358753?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Luxury Car" class="slide-image">
+                <img src="{{ url_for('static', filename='IMG3.jpg') }}" alt="Luxury Car" class="slide-image">
                 <div class="slide-overlay"></div>
                 <div class="slide-content">
                     <h2>PREMIUM VEHICLES</h2>
@@ -765,7 +838,7 @@
             
             <!-- Slide 2 -->
             <div class="slide">
-                <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Luxury SUV" class="slide-image">
+                <img src="{{ url_for('static', filename='IMG2.jpg') }}" alt="Luxury Car" class="slide-image">
                 <div class="slide-overlay"></div>
                 <div class="slide-content">
                     <h2>ABOVE AVERAGE CARS</h2>
@@ -776,7 +849,7 @@
             
             <!-- Slide 3 -->
             <div class="slide">
-                <img src="https://images.unsplash.com/photo-1550355291-bbee04a92027?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Sports Car" class="slide-image">
+                <img src="{{ url_for('static', filename='IMG3.jpg') }}" alt="Luxury Car" class="slide-image">
                 <div class="slide-overlay"></div>
                 <div class="slide-content">
                     <h2>ABOUT US</h2>
@@ -887,52 +960,36 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>About Us</h3>
-                    <p>Your trusted partner for finding the perfect vehicle in South Africa.</p>
-                    <p>Established in 2018 on Bram Fischer Drive, Randburg, Gauteng.</p>
-                </div>
-                <div class="footer-section">
-                    <h3>Quick Links</h3>
-                    <a href="/">Home</a>
-                    <a href="/inventory">Search Cars</a>
-                    <a href="/about.html">About</a>
-                    <a href="/finance">Financing</a>
-                    <a href="/contact.html">Contact</a>
-                </div>
-                <div class="footer-section">
-                    <h3>Contact Info</h3>
-                    <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i> 
-                        <span>229A Bram Fischer Drive, Randburg, Gauteng</span>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-phone"></i> 
-                        <a href="tel:0870368087">087 036 8087</a>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i> 
-                        <a href="mailto:autoagents23@gmail.com">autoagents23@gmail.com</a>
-                    </div>
-                    
-                    <!-- Social Media Icons -->
-                    <div class="social-icons">
-                        <a href="https://wa.me/27123456789" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                        <a href="https://facebook.com/theautoagents" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://instagram.com/theautoagents" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="https://twitter.com/theautoagents" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
-                    </div>
-                </div>
+<!-- Footer -->
+<footer style="background-color: #000; color: #fff; padding: 20px 0;">
+    <div class="container">
+        <div class="footer-bottom" style="text-align: center; margin-top: 10px;">
+            <!-- Social Icons & Email -->
+            <div class="social-icons" style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 15px; margin-bottom: 10px;">
+                <a href="mailto:autoagents23@gmail.com" title="Email Us" aria-label="Email">
+                    <i class="fas fa-envelope" style="font-size: 18px; color: #D4AF37;"></i>
+                </a>
+                <a href="https://wa.me/27767862666" target="_blank" title="WhatsApp" aria-label="WhatsApp">
+                    <i class="fab fa-whatsapp" style="font-size: 18px; color: #D4AF37;"></i>
+                </a>
+                <a href="https://facebook.com/theautoagentsSA" target="_blank" title="Facebook" aria-label="Facebook">
+                    <i class="fab fa-facebook-f" style="font-size: 18px; color: #D4AF37;"></i>
+                </a>
+                <a href="https://instagram.com/theautoagents" target="_blank" title="Instagram" aria-label="Instagram">
+                    <i class="fab fa-instagram" style="font-size: 18px; color: #D4AF37;"></i>
+                </a>
+                <a href="https://tiktok.com/@theautoagents" target="_blank" title="TikTok" aria-label="TikTok">
+                    <i class="fab fa-tiktok" style="font-size: 18px; color: #D4AF37;"></i>
+                </a>
             </div>
-            <div class="copyright">
+
+            <!-- Copyright Text -->
+            <div class="copyright" style="border-top: 1px solid #333; padding-top: 10px; font-size: 12px; color: #ccc;">
                 &copy; 2025 The Agents. All rights reserved.
             </div>
         </div>
-    </footer>
+    </div>
+</footer>
 
     <script>
         // Slideshow functionality
@@ -982,6 +1039,24 @@
                     header.style.backgroundColor = '#000000';
                     header.style.padding = '15px 0';
                 }
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleButton = document.getElementById('mobileMenuToggle');
+            const navLinks = document.getElementById('navLinks');
+    
+            // Toggle nav visibility on click
+            toggleButton.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+            });
+    
+            // Close nav when clicking a link (optional)
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                });
             });
         });
     </script>

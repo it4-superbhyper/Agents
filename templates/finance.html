@@ -43,6 +43,74 @@
             align-items: center;
         }
 
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 400px; /* Adjust height as needed */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            overflow: hidden;
+            margin-bottom: 30px; /* Add some space below the hero */
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Use your local image */
+            background: url('/static/IMG3.jpg') no-repeat center center/cover;
+            /* Add a dark overlay for better text readability */
+            background-color: rgba(0, 0, 0, 0.4);
+            background-blend-mode: overlay; /* Blends the color with the image */
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem; /* Adjusted size */
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem; /* Adjusted size */
+            margin-bottom: 25px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        /* Optional CTA Button Styles (if you add the button) */
+        /*
+        .cta-button {
+            display: inline-block;
+            background: #D4AF37;
+            color: #000;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: 2px solid #D4AF37;
+        }
+
+        .cta-button:hover {
+            background: transparent;
+            color: #D4AF37;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        */
+
         .logo img {
             height: 50px;
             width: auto;
@@ -348,6 +416,46 @@
         .info-content li {
             margin-bottom: 10px;
         }
+
+        /* Hide hamburger on desktop */
+.mobile-menu-toggle {
+    display: none;
+}
+
+/* Show hamburger only on mobile */
+@media (max-width: 768px) {
+    .mobile-menu-toggle {
+        display: block; /* Show hamburger icon */
+        cursor: pointer;
+        font-size: 1.5rem;
+        color: white;
+        margin-left: auto; /* Push to right */
+    }
+
+    .nav-links {
+        display: none; /* Hide desktop nav by default */
+        position: absolute;
+        top: 70px; /* Below header */
+        left: 0;
+        width: 100%;
+        background: #000;
+        flex-direction: column;
+        padding: 15px 0;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        z-index: 999;
+    }
+
+    .nav-links.active {
+        display: flex; /* Show nav when active */
+    }
+
+    nav a {
+        margin: 0; /* Remove horizontal spacing */
+        padding: 10px 20px; /* Add vertical padding */
+        display: block; /* Make links block elements */
+        text-align: center;
+    }
+}
     </style>
 </head>
 <body>
@@ -362,20 +470,37 @@
             </a>
         </div>
         <nav>
-            <a href="/">Home</a>
-            <a href="/finance">Finance</a>
-            <a href="/contact.html">Contact</a>
+            <!-- Hamburger Menu for Mobile -->
+            <div class="mobile-menu-toggle" id="mobileMenuToggle">
+                <i class="fas fa-bars"></i> <!-- Hamburger icon -->
+            </div>
+        
+            <!-- Desktop Navigation Links -->
+            <div class="nav-links" id="navLinks">
+                <a href="/">Home</a>
+                <a href="/inventory">Inventory</a>
+                <a href="/about.html">About</a>
+                <a href="/finance">Finance</a>
+                <a href="/contact.html">Contact</a>
+            </div>
         </nav>
     </div>
 </header>
 
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Vehicle Finance Made Simple</h1>
+        <p>Calculate your monthly payments and plan your budget with confidence</p>
+        <!-- Optional CTA Button -->
+        <!-- <a href="#financeCalculator" class="cta-button">Calculate Now</a> -->
+    </div>
+</section>
+
 <!-- Main -->
 <main class="container">
-    <a href="/" class="back-link"><i class="fas fa-arrow-left"></i> Back to Home</a>
-    
-    <h1 class="page-title">Vehicle Finance Calculator</h1>
-    <p class="page-subtitle">Calculate your monthly vehicle payments and plan your budget</p>
-    
+
+  
     <div class="finance-container">
         <!-- Calculator Section -->
         <div class="calculator-section">
@@ -484,28 +609,32 @@
 </main>
 
 <!-- Footer -->
-<footer>
+<footer style="background-color: #000; color: #fff; padding: 20px 0;">
     <div class="container">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>About Us</h3>
-                <p>Your trusted partner for finding the perfect vehicle in South Africa.</p>
+        <div class="footer-bottom" style="text-align: center; margin-top: 10px;">
+            <!-- Social Icons & Email -->
+            <div class="social-icons" style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 15px; margin-bottom: 10px;">
+                <a href="mailto:autoagents23@gmail.com" title="Email Us" aria-label="Email">
+                    <i class="fas fa-envelope" style="font-size: 18px; color: #D4AF37;"></i>
+                </a>
+                <a href="https://wa.me/27767862666" target="_blank" title="WhatsApp" aria-label="WhatsApp">
+                    <i class="fab fa-whatsapp" style="font-size: 18px; color: #D4AF37;"></i>
+                </a>
+                <a href="https://facebook.com/theautoagentsSA" target="_blank" title="Facebook" aria-label="Facebook">
+                    <i class="fab fa-facebook-f" style="font-size: 18px; color: #D4AF37;"></i>
+                </a>
+                <a href="https://instagram.com/theautoagents" target="_blank" title="Instagram" aria-label="Instagram">
+                    <i class="fab fa-instagram" style="font-size: 18px; color: #D4AF37;"></i>
+                </a>
+                <a href="https://tiktok.com/@theautoagents" target="_blank" title="TikTok" aria-label="TikTok">
+                    <i class="fab fa-tiktok" style="font-size: 18px; color: #D4AF37;"></i>
+                </a>
             </div>
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <a href="/">Home</a>
-                <a href="/">Search Cars</a>
-                <a href="/finance.html">Finance Calculator</a>
+
+            <!-- Copyright Text -->
+            <div class="copyright" style="border-top: 1px solid #333; padding-top: 10px; font-size: 12px; color: #ccc;">
+                &copy; 2025 The Agents. All rights reserved.
             </div>
-            <div class="footer-section">
-                <h3>Contact Info</h3>
-                <p><i class="fas fa-map-marker-alt"></i> 229A Bram Fischer Drive, Randburg, Gauteng</p>
-                <p><i class="fas fa-phone"></i> 087 036 8087</p>
-                <p><i class="fas fa-envelope"></i> autoagents23@gmail.com</p>
-            </div>
-        </div>
-        <div class="copyright">
-            &copy; 2025 The Agents. All rights reserved.
         </div>
     </div>
 </footer>
@@ -643,6 +772,24 @@
     depositValue.textContent = formatCurrency(parseFloat(depositInput.value));
     interestValue.textContent = parseFloat(interestRateInput.value).toFixed(1) + '%';
     termValue.textContent = loanTermInput.value + ' months';
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const toggleButton = document.getElementById('mobileMenuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        // Toggle nav visibility on click
+        toggleButton.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close nav when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+    });
 </script>
 
 </body>

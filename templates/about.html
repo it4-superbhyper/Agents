@@ -81,7 +81,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('https://images.unsplash.com/photo-1494976388531-d1058494cdd8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+            background: url('/static/IMG3.jpg') no-repeat center center/cover; /* ← Updated path */
             filter: brightness(0.4);
             z-index: -1;
         }
@@ -129,6 +129,11 @@
             margin-bottom: 30px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.08);
             border: 1px solid #eee;
+        }
+
+        /* Hide hamburger on desktop */
+        .mobile-menu-toggle {
+            display: none;
         }
 
         .content-section h2 {
@@ -359,7 +364,44 @@
             .values-grid {
                 grid-template-columns: 1fr;
             }
-        }
+
+
+/* Show hamburger only on mobile */
+@media (max-width: 768px) {
+    .mobile-menu-toggle {
+        display: block; /* Show hamburger icon */
+        cursor: pointer;
+        font-size: 1.5rem;
+        color: white;
+        margin-left: auto; /* Push to right */
+    }
+
+    .nav-links {
+        display: none; /* Hide desktop nav by default */
+        position: absolute;
+        top: 70px; /* Below header */
+        left: 0;
+        width: 100%;
+        background: #000;
+        flex-direction: column;
+        padding: 15px 0;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        z-index: 999;
+    }
+
+    .nav-links.active {
+        display: flex; /* Show nav when active */
+    }
+
+    nav a {
+        margin: 0; /* Remove horizontal spacing */
+        padding: 10px 20px; /* Add vertical padding */
+        display: block; /* Make links block elements */
+        text-align: center;
+    }
+
+}
+        
     </style>
 </head>
 <body>
@@ -372,9 +414,19 @@
                 </a>
             </div>
             <nav>
-                <a href="/">Home</a>
-                <a href="/finance">Finance</a>
-                <a href="/contact.html">Contact</a>
+                <!-- Hamburger Menu for Mobile -->
+                <div class="mobile-menu-toggle" id="mobileMenuToggle">
+                    <i class="fas fa-bars"></i> <!-- Hamburger icon -->
+                </div>
+            
+                <!-- Desktop Navigation Links -->
+                <div class="nav-links" id="navLinks">
+                    <a href="/">Home</a>
+                    <a href="/inventory">Inventory</a>
+                    <a href="/about.html">About</a>
+                    <a href="/finance">Finance</a>
+                    <a href="/contact.html">Contact</a>
+                </div>
             </nav>
         </div>
     </header>
@@ -382,7 +434,7 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <h1>About The Auto Agents</h1>
+            <h1>About The Agents</h1>
             <p>Your trusted partners in automotive excellence</p>
         </div>
     </section>
@@ -451,50 +503,55 @@
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section-bottom">
-                    <h3>About Us</h3>
-                    <p>Your trusted partner for finding the perfect vehicle in South Africa.</p>
-                </div>
-                <div class="footer-section-bottom">
-                    <h3>Quick Links</h3>
-                    <a href="/">Home</a>
-                    <a href="/">Search Cars</a>
-                    <a href="/about.html">About</a>
-                </div>
-                <div class="footer-section-bottom" id="contact-section">
-                    <h3>Contact Info</h3>
-                    <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i> 
-                        <a href="https://maps.google.com/?q=229A+Bram+Fischer+Drive,+Randburg,+Gauteng" target="_blank">
-                            229A Bram Fischer Drive, Randburg, Gauteng
-                        </a>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-phone"></i> 
-                        <a href="tel:0870368087">087 036 8087</a>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i> 
-                        <a href="mailto:autoagents23@gmail.com">autoagents23@gmail.com</a>
-                    </div>
-                    
-                    <!-- Social Media Icons -->
-                    <div class="social-icons">
-                        <a href="https://wa.me/27123456789" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                        <a href="https://facebook.com/theautoagents" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://instagram.com/theautoagents" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="https://twitter.com/theautoagents" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
-                    </div>
-                </div>
+<!-- Footer -->
+<footer style="background-color: #000; color: #fff; padding: 20px 0;">
+    <div class="container">
+        <div class="footer-bottom" style="text-align: center; margin-top: 10px;">
+            <!-- Social Icons & Email -->
+            <div class="social-icons" style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 15px; margin-bottom: 10px;">
+                <a href="mailto:autoagents23@gmail.com" title="Email Us" aria-label="Email">
+                    <i class="fas fa-envelope" style="font-size: 18px; color: #D4AF37;"></i>
+                </a>
+                <a href="https://wa.me/27767862666" target="_blank" title="WhatsApp" aria-label="WhatsApp">
+                    <i class="fab fa-whatsapp" style="font-size: 18px; color: #D4AF37;"></i>
+                </a>
+                <a href="https://facebook.com/theautoagentsSA" target="_blank" title="Facebook" aria-label="Facebook">
+                    <i class="fab fa-facebook-f" style="font-size: 18px; color: #D4AF37;"></i>
+                </a>
+                <a href="https://instagram.com/theautoagents" target="_blank" title="Instagram" aria-label="Instagram">
+                    <i class="fab fa-instagram" style="font-size: 18px; color: #D4AF37;"></i>
+                </a>
+                <a href="https://tiktok.com/@theautoagents" target="_blank" title="TikTok" aria-label="TikTok">
+                    <i class="fab fa-tiktok" style="font-size: 18px; color: #D4AF37;"></i>
+                </a>
             </div>
-            <div class="copyright">
-                &copy; 2025 The Auto Agents. All rights reserved.
+
+            <!-- Copyright Text -->
+            <div class="copyright" style="border-top: 1px solid #333; padding-top: 10px; font-size: 12px; color: #ccc;">
+                &copy; 2025 The Agents. All rights reserved.
             </div>
         </div>
-    </footer>
+    </div>
+</footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleButton = document.getElementById('mobileMenuToggle');
+            const navLinks = document.getElementById('navLinks');
+    
+            // Toggle nav visibility on click
+            toggleButton.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+            });
+    
+            // Close nav when clicking a link
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                });
+            });
+        });
+    </script>
+
 </body>
 </html>
