@@ -350,6 +350,10 @@ def trade_in():
 def health_check():
     return jsonify({"status": "healthy", "timestamp": datetime.now().isoformat()})
 
+# Add route for gallery page
+@app.route("/gallery")
+def gallery():
+    return render_template("gallery.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
