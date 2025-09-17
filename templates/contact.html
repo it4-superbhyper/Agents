@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - The Agents</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="  https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css  ">
 
     <style>
         * {
@@ -388,6 +388,7 @@ footer .social-icons a:focus {
                 <a href="/about.html">About</a>
                 <a href="/finance">Finance</a>
                 <a href="/contact.html">Contact</a>
+                <a href="/gallery">Gallery</a>
             </div>
         </nav>
     </div>
@@ -435,7 +436,8 @@ footer .social-icons a:focus {
             <!-- Contact Form -->
             <div class="contact-card">
                 <h2>Send Us a Message</h2>
-                <form id="contactForm">
+                <!-- FormSubmit Form -->
+                <form action="https://formsubmit.co/momoameen6@gmail.com" method="POST">
                     <div class="form-group">
                         <label for="name">Full Name</label>
                         <input type="text" id="name" name="name" required>
@@ -467,6 +469,11 @@ footer .social-icons a:focus {
                         <textarea id="message" name="message" placeholder="How can we assist you today?" required></textarea>
                     </div>
 
+                    <!-- Redirect to a thank you page (optional) -->
+                    <!-- <input type="hidden" name="_next" value="https://theautoagents.co.za/thank-you">
+                    <!-- Enable reCAPTCHA -->
+                    <input type="hidden" name="_captcha" value="true">
+
                     <button type="submit">Send Message</button>
                 </form>
             </div>
@@ -490,16 +497,16 @@ footer .social-icons a:focus {
                 <a href="mailto:autoagents23@gmail.com" title="Email Us" aria-label="Email">
                     <i class="fas fa-envelope" style="font-size: 18px; color: #D4AF37;"></i>
                 </a>
-                <a href="https://wa.me/27767862666" target="_blank" title="WhatsApp" aria-label="WhatsApp">
+                <a href="  https://wa.me/27767862666  " target="_blank" title="WhatsApp" aria-label="WhatsApp">
                     <i class="fab fa-whatsapp" style="font-size: 18px; color: #D4AF37;"></i>
                 </a>
-                <a href="https://facebook.com/theautoagentsSA" target="_blank" title="Facebook" aria-label="Facebook">
+                <a href="https://facebook.com/theautoagentsSA  " target="_blank" title="Facebook" aria-label="Facebook">
                     <i class="fab fa-facebook-f" style="font-size: 18px; color: #D4AF37;"></i>
                 </a>
-                <a href="https://instagram.com/theautoagents" target="_blank" title="Instagram" aria-label="Instagram">
+                <a href="https://instagram.com/theautoagents  " target="_blank" title="Instagram" aria-label="Instagram">
                     <i class="fab fa-instagram" style="font-size: 18px; color: #D4AF37;"></i>
                 </a>
-                <a href="https://tiktok.com/@theautoagents" target="_blank" title="TikTok" aria-label="TikTok">
+                <a href="https://tiktok.com/@theautoagents  " target="_blank" title="TikTok" aria-label="TikTok">
                     <i class="fab fa-tiktok" style="font-size: 18px; color: #D4AF37;"></i>
                 </a>
             </div>
@@ -513,23 +520,7 @@ footer .social-icons a:focus {
 </footer>
 
     <script>
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            // Get form values
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value;
-            const subject = document.getElementById('subject').value;
-            const message = document.getElementById('message').value;
-
-            // In a real application, you would send this data to your server
-            // For now, we'll just show an alert
-            alert(`Thank you ${name} for your message. We will contact you soon!`);
-
-            // Reset form
-            this.reset();
-        });
+        // Removed the old form submission script as it's no longer needed
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
