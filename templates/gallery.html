@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gallery - The Agents</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="  https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css  ">
     <style>
         * {
             margin: 0;
@@ -104,6 +104,49 @@
         nav a:hover {
             opacity: 0.9;
             color: #D4AF37;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('{{ url_for('static', filename='IMG3.jpg') }}') no-repeat center center/cover;
+            background-color: rgba(0, 0, 0, 0.4);
+            background-blend-mode: overlay;
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         }
 
         /* Gallery Section */
@@ -250,10 +293,18 @@
     </div>
 </header>
 
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Our Gallery</h1>
+        <p>Explore our collection of premium vehicles and experience the excellence that defines The Agents</p>
+    </div>
+</section>
+
 <!-- Gallery Section -->
 <section class="gallery-section">
     <div class="container">
-        <h1 class="gallery-title">Our Gallery</h1>
+
         <div class="gallery-grid">
             <!-- Image 1 -->
             <div class="gallery-item">
@@ -293,16 +344,16 @@
                 <a href="mailto:autoagents23@gmail.com" title="Email Us" aria-label="Email">
                     <i class="fas fa-envelope" style="font-size: 18px; color: #D4AF37;"></i>
                 </a>
-                <a href="https://wa.me/27767862666" target="_blank" title="WhatsApp" aria-label="WhatsApp">
+                <a href="https://wa.me/27767862666  " target="_blank" title="WhatsApp" aria-label="WhatsApp">
                     <i class="fab fa-whatsapp" style="font-size: 18px; color: #D4AF37;"></i>
                 </a>
-                <a href="https://facebook.com/theautoagentsSA" target="_blank" title="Facebook" aria-label="Facebook">
+                <a href="https://facebook.com/theautoagentsSA  " target="_blank" title="Facebook" aria-label="Facebook">
                     <i class="fab fa-facebook-f" style="font-size: 18px; color: #D4AF37;"></i>
                 </a>
-                <a href="https://instagram.com/theautoagents" target="_blank" title="Instagram" aria-label="Instagram">
+                <a href="https://instagram.com/theautoagents  " target="_blank" title="Instagram" aria-label="Instagram">
                     <i class="fab fa-instagram" style="font-size: 18px; color: #D4AF37;"></i>
                 </a>
-                <a href="https://tiktok.com/@theautoagents" target="_blank" title="TikTok" aria-label="TikTok">
+                <a href="https://tiktok.com/@theautoagents  " target="_blank" title="TikTok" aria-label="TikTok">
                     <i class="fab fa-tiktok" style="font-size: 18px; color: #D4AF37;"></i>
                 </a>
             </div>
