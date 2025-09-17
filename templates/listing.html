@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>{{ car.make }} {{ car.model }} - The Agents</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <link rel="stylesheet" href="  https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css  "/>
     <style>
         * {
             margin: 0;
@@ -331,6 +331,31 @@
             color: #D4AF37;
         }
 
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: #333;
+            border-radius: 50%;
+            color: #D4AF37;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-icons a:hover {
+            background: #D4AF37;
+            transform: translateY(-3px);
+        }
+
         .copyright {
             text-align: center;
             padding-top: 20px;
@@ -607,30 +632,30 @@
 </div>
 
 <!-- Footer -->
-<footer style="background-color: #000; color: #fff; padding: 20px 0;">
+<footer>
     <div class="container">
         <div class="footer-bottom" style="text-align: center; margin-top: 10px;">
             <!-- Social Icons & Email -->
-            <div class="social-icons" style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 15px; margin-bottom: 10px;">
+            <div class="social-icons" style="justify-content: center;">
                 <a href="mailto:autoagents23@gmail.com" title="Email Us" aria-label="Email">
-                    <i class="fas fa-envelope" style="font-size: 18px; color: #D4AF37;"></i>
+                    <i class="fas fa-envelope"></i>
                 </a>
                 <a href="https://wa.me/27767862666" target="_blank" title="WhatsApp" aria-label="WhatsApp">
-                    <i class="fab fa-whatsapp" style="font-size: 18px; color: #D4AF37;"></i>
+                    <i class="fab fa-whatsapp"></i>
                 </a>
                 <a href="https://facebook.com/theautoagentsSA" target="_blank" title="Facebook" aria-label="Facebook">
-                    <i class="fab fa-facebook-f" style="font-size: 18px; color: #D4AF37;"></i>
+                    <i class="fab fa-facebook-f"></i>
                 </a>
                 <a href="https://instagram.com/theautoagents" target="_blank" title="Instagram" aria-label="Instagram">
-                    <i class="fab fa-instagram" style="font-size: 18px; color: #D4AF37;"></i>
+                    <i class="fab fa-instagram"></i>
                 </a>
                 <a href="https://tiktok.com/@theautoagents" target="_blank" title="TikTok" aria-label="TikTok">
-                    <i class="fab fa-tiktok" style="font-size: 18px; color: #D4AF37;"></i>
+                    <i class="fab fa-tiktok"></i>
                 </a>
             </div>
 
             <!-- Copyright Text -->
-            <div class="copyright" style="border-top: 1px solid #333; padding-top: 10px; font-size: 12px; color: #ccc;">
+            <div class="copyright">
                 &copy; 2025 The Agents. All rights reserved.
             </div>
         </div>
