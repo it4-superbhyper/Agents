@@ -1,5 +1,5 @@
 # app.py
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, redirect, url_for
 import requests
 from dotenv import load_dotenv
 import os
@@ -306,41 +306,41 @@ def listing_detail(listing_id):
     return "Car not found", 404
 
 
-# Route for about page
-@app.route("/about.html")
+# --- Updated Routes for Clean URLs ---
+# These routes now point to the clean URL paths (e.g., /about/)
+# The old .html routes redirect to the new ones.
+
+@app.route("/about/")
 def about():
     return render_template("about.html")
 
+# Redirect old .html URL to the clean one
+@app.route("/about.html")
+def about_redirect():
+    return redirect(url_for('about'))
 
-@app.route("/about")
-def about_page():
-    return render_template("about.html")
 
-
-# Add route for finance calculator page
-@app.route("/finance")
+@app.route("/finance/")
 def finance():
     return render_template("finance.html")
 
-
+# Redirect old .html URL to the clean one
 @app.route("/finance.html")
-def finance_html():
-    return render_template("finance.html")
+def finance_redirect():
+    return redirect(url_for('finance'))
 
 
-# Add route for contact page
-@app.route("/contact.html")
+@app.route("/contact/")
 def contact():
     return render_template("contact.html")
 
+# Redirect old .html URL to the clean one
+@app.route("/contact.html")
+def contact_redirect():
+    return redirect(url_for('contact'))
 
-@app.route("/contact")
-def contact_page():
-    return render_template("contact.html")
 
-
-# Add route for trade-in page
-@app.route("/trade-in")
+@app.route("/trade-in/")
 def trade_in():
     return render_template("trade-in.html")
 
@@ -350,10 +350,11 @@ def trade_in():
 def health_check():
     return jsonify({"status": "healthy", "timestamp": datetime.now().isoformat()})
 
-# Add route for gallery page
-@app.route("/gallery")
+
+@app.route("/gallery/")
 def gallery():
     return render_template("gallery.html")
+
 
 if __name__ == "__main__":
     app.run(debug=True)
